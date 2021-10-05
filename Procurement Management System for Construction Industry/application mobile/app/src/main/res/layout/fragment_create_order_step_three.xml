@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_order_three_frag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.order.CreateOrderStepThree">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp">
+
+
+        <com.kofigyan.stateprogressbar.StateProgressBar
+            android:id="@+id/your_state_progress_bar_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="@+id/textView3"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:spb_animateToCurrentProgressState="true"
+            app:spb_checkStateCompleted="true"
+            app:spb_currentStateDescriptionColor="#009688"
+            app:spb_currentStateNumber="three"
+            app:spb_maxStateNumber="three"
+            app:spb_stateBackgroundColor="#BDBDBD"
+            app:spb_stateDescriptionColor="#808080"
+            app:spb_stateForegroundColor="#009688"
+            app:spb_stateNumberBackgroundColor="#808080"
+            app:spb_stateNumberForegroundColor="#eeeeee"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#b2b3ad"
+            android:gravity="center_horizontal"
+            android:text="@string/create_new_order"
+            android:textAlignment="center"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.007"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:text="@string/date_from"
+            android:textColor="#070707"
+            app:layout_constraintEnd_toEndOf="@+id/co_frome_date"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/co_frome_date"
+            app:layout_constraintTop_toBottomOf="@+id/your_state_progress_bar_three"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/date_to"
+            android:textColor="#090909"
+            app:layout_constraintEnd_toEndOf="@+id/co_to_date"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/co_to_date"
+            app:layout_constraintTop_toBottomOf="@+id/co_frome_date"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/button_create_final"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/create_order"
+            app:layout_constraintEnd_toEndOf="@+id/co_to_date"
+            app:layout_constraintStart_toStartOf="@+id/co_to_date"
+            app:layout_constraintTop_toBottomOf="@+id/co_to_date"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/co_frome_date"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="64dp"
+            android:background="@drawable/border_view_bg"
+            android:ems="10"
+            android:inputType="date"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/your_state_progress_bar_three"
+            app:layout_constraintStart_toStartOf="@+id/your_state_progress_bar_three"
+            app:layout_constraintTop_toBottomOf="@+id/your_state_progress_bar_three" />
+
+        <EditText
+            android:id="@+id/co_to_date"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/border_view_bg"
+            android:ems="10"
+            android:inputType="date"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/co_frome_date"
+            app:layout_constraintStart_toStartOf="@+id/co_frome_date"
+            app:layout_constraintTop_toBottomOf="@+id/co_frome_date" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

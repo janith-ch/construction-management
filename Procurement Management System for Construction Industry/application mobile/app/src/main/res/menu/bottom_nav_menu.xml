@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/order"
+        android:title="Order"
+        android:icon="@drawable/order_icon"/>
+    <item
+        android:id="@+id/delivery"
+        android:title="Delivery"
+        android:icon="@drawable/delivery_bg"/>
+    <item
+        android:id="@+id/invoice"
+        android:title="Invoice"
+        android:icon="@drawable/invoice_png"/>
+    <item
+        android:id="@+id/quotation"
+        android:title="quotation"
+        android:icon="@drawable/quatation_icon"/>
+</menu>

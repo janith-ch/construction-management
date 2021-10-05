@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.quotation.Quotations">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView_quotations"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#b2b3ad"
+            android:text="@string/quotations"
+            android:textAlignment="center"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.001" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/quotations_recycle_view"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+
+            android:layout_marginTop="16dp"
+            android:background="#e3e1e1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView_quotations"
+            app:layout_constraintTop_toBottomOf="@+id/textView_quotations" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

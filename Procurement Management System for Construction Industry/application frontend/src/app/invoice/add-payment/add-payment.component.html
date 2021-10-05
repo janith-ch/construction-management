@@ -1,0 +1,75 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="card">
+                    <form [formGroup]="paymentForm" (submit)="createPayment()">
+                        <div class="card-header card-header-primary card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">add_box</i>
+                            </div>
+                            <h4 class="card-title">Add Payment</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class=" col-md-12 ">
+                                    <mat-form-field class="example-full-width has-label">
+                                        <input type="number" matInput id="amount" placeholder="Amount *"
+                                            formControlName="amount">
+                                        <mat-error *ngIf="payment.amount.errors?.required">
+                                            Amount is <strong>required</strong>
+                                        </mat-error>
+                                        <mat-error *ngIf="payment.amount.errors?.amount">
+                                            Please enter a valid email address
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class=" col-md-12 ">
+                                    <mat-form-field class="example-full-width has-label">
+                                        <select matNativeControl matInput id="paymentMethod" formControlName="paymentMethod">
+                                            <option value="null">Please Select</option>
+                                            <option value="CASH">CASH</option>
+                                            <option value="TRANSFER MONEY">TRANSFER MONEY</option>
+                                          
+                                          
+                                          </select>
+                                        <mat-error *ngIf="payment.paymentMethod.errors?.required">
+                                            Payment Method Type is <strong>required</strong>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                             
+                                <div class=" col-md-12 ">
+                                    <mat-form-field class="example-full-width has-label">
+                                        <input type="date" matInput id="paymentDate" placeholder="Date *"
+                                            formControlName="paymentDate">
+                                        <mat-error *ngIf="payment.paymentDate.errors?.required">
+                                            Date is <strong>required</strong>
+                                        </mat-error>
+                                       
+                                    </mat-form-field>
+                                </div>
+             
+                 
+                
+                               
+                                
+                                
+                              
+                            </div>
+                        </div>
+                        <div class="card-footer text-right">
+                            <div class="form-check mr-auto">
+                            </div>
+                            <button mat-raised-button type="submit" [disabled]="paymentForm.invalid"
+                                class="btn btn-fill btn-success">Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_order_two_frag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.order.CreateOrderStepTwo">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp">
+
+
+        <com.kofigyan.stateprogressbar.StateProgressBar
+            android:id="@+id/your_state_progress_bar_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:spb_animateToCurrentProgressState="true"
+            app:spb_checkStateCompleted="true"
+            app:spb_currentStateDescriptionColor="#009688"
+            app:spb_currentStateNumber="two"
+            app:spb_maxStateNumber="three"
+            app:spb_stateBackgroundColor="#BDBDBD"
+            app:spb_stateDescriptionColor="#808080"
+            app:spb_stateForegroundColor="#009688"
+            app:spb_stateNumberBackgroundColor="#808080"
+            app:spb_stateNumberForegroundColor="#eeeeee"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#b2b3ad"
+            android:gravity="center_horizontal"
+            android:text="@string/create_new_order"
+            android:textAlignment="center"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.007"
+            tools:ignore="MissingConstraints" />
+
+        <Spinner
+            android:id="@+id/co_material"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/border_view_bg"
+            android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toEndOf="@+id/your_state_progress_bar_two"
+            app:layout_constraintStart_toStartOf="@+id/your_state_progress_bar_two"
+            app:layout_constraintTop_toBottomOf="@+id/your_state_progress_bar_two"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+
+        <Spinner
+            android:id="@+id/co_quantityType"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/border_view_bg"
+            android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toEndOf="@+id/co_material"
+            app:layout_constraintStart_toStartOf="@+id/co_material"
+            app:layout_constraintTop_toBottomOf="@+id/co_material"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/select_material"
+            android:textColor="#070707"
+            app:layout_constraintEnd_toEndOf="@+id/your_state_progress_bar_two"
+            app:layout_constraintHorizontal_bias="0.143"
+            app:layout_constraintStart_toStartOf="@+id/your_state_progress_bar_two"
+            app:layout_constraintTop_toBottomOf="@+id/your_state_progress_bar_two"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/quantity_type"
+            android:textColor="#090909"
+            app:layout_constraintEnd_toEndOf="@+id/co_material"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/co_material"
+            app:layout_constraintTop_toBottomOf="@+id/co_material"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/create_order_step_02"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/next"
+            app:layout_constraintEnd_toEndOf="@+id/co_quantity"
+            app:layout_constraintStart_toStartOf="@+id/co_quantity"
+            app:layout_constraintTop_toBottomOf="@+id/co_quantity"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/co_quantity"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/border_view_bg"
+            android:inputType="textCapSentences|textAutoCorrect"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/co_quantityType"
+            app:layout_constraintStart_toStartOf="@+id/co_quantityType"
+            app:layout_constraintTop_toBottomOf="@+id/co_quantityType"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/select_quantity"
+            android:textColor="#0B0A0A"
+            app:layout_constraintEnd_toEndOf="@+id/co_quantityType"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/co_quantityType"
+            app:layout_constraintTop_toBottomOf="@+id/co_quantityType"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

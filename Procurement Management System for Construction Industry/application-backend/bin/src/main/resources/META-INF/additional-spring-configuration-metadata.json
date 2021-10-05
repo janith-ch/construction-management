@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "system.jdbc.pass",
+  "type": "java.lang.String",
+  "description": "A description for 'system.jdbc.pass'"
+}]}
