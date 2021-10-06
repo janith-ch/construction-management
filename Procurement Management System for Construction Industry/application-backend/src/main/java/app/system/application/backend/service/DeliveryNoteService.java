@@ -89,16 +89,16 @@ public class DeliveryNoteService implements DeliveryNoteInterface {
 		List<OrderDto> allList = orderService.receiveOrders();
 
 		
-//		for(OrderDto order : allList) {
-//
-//			int isApproved = order.getIsApprove();
-//			String deliveryStatus = order.getDeliveryStatus();
-//
-//		//	if(isApproved == 1 && deliveryStatus != DeliveryEnum.DISPATCHED.getStatus()) {
+		for(OrderDto order : allList) {
+
+			int isApproved = order.getIsApprove();
+			String deliveryStatus = order.getDeliveryStatus();
+
+			if(isApproved == 1 && deliveryStatus != DeliveryEnum.DISPATCHED.getStatus()) {
 //		if(isApproved==1){
-//				deliveryOrderDtos.add(order);
-//			}
-//		}
+				deliveryOrderDtos.add(order);
+			}
+		}
 		
 		return deliveryOrderDtos;
 		
