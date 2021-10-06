@@ -20,6 +20,8 @@ public interface OrderInt {
 	int approveOrderStatus(int orderId,int status);
 	
 	List<OrderDto> findAllDeliveryOrders();
+
+	List<OrderDto> receiveOrders();
 	
 	
 

@@ -123,5 +123,10 @@ public class OrderService implements OrderInt {
 		
 	}
 
-   
+	@Override
+	public List<OrderDto> receiveOrders() {
+		return orderRepository.findAll();
+	}
+
+
 }

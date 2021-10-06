@@ -51,7 +51,7 @@ public class InvoiceAdapter extends RecyclerView.Adapter<InvoiceAdapter.InvoiceV
         holder.textView_3.setText(listdata.get(position).getSite());
         holder.textView_4.setText( listdata.get(position).getLocation());
         holder.textView_5.setText(listdata.get(position).getMaterial());
-        holder.textView_6.setText(listdata.get(position).getQuantity().concat(" ".concat(listdata.get(position).getQuantityType())));
+        holder.textView_6.setText(String.valueOf(listdata.get(position).getQuantity()));
         holder.textView_7.setText(listdata.get(position).getCreatedDate());
         holder.textView_8.setText(listdata.get(position).getTotalPrice());
         holder.cardView.setOnClickListener(new View.OnClickListener() {

@@ -26,14 +26,14 @@ export interface ChildrenItems {
 // Menu Items
 export const ROUTES: RouteInfo[] = [
   {
-    path: '/product',
-    title: 'Products',
+    path: '/order',
+    title: 'Orders',
     type: 'sub',
     icontype: 'devices_other',
-    collapse: 'product',
+    collapse: 'order',
     children: [
-      { path: 'view', title: 'View product', ab: 'VP', active: true },
-      { path: 'create', title: 'Create product', ab: 'CP', active: true },
+      { path: 'view', title: 'View Orders', ab: 'VP', active: true },
+      { path: 'create', title: 'Create product', ab: 'CP', active: false },
       { path: 'edit', title: 'Edit product', ab: 'EP', active: false },
     ],
   },
@@ -55,7 +55,7 @@ export const ROUTES: RouteInfo[] = [
     title: 'Orders & Quotations',
     type: 'sub',
     icontype: 'description',
-    collapse: 'user',
+    collapse: 'quotation',
     children: [
       { path: 'summary', title: 'View All Orders', ab: 'VAO', active: true },
       {
@@ -71,7 +71,7 @@ export const ROUTES: RouteInfo[] = [
     title: 'Invoice',
     type: 'sub',
     icontype: 'receipt',
-    collapse: 'user',
+    collapse: 'invoice',
     children: [
       { path: 'summary', title: 'View All Invoices', ab: 'VAO', active: true },
       {

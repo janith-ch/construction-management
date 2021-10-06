@@ -55,6 +55,17 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: '',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: 'order',
+        loadChildren: () =>
+          import('./order/order.module').then((m) => m.OrderModule),
+      },
+    ],
+  },
 ];
 
 @NgModule({

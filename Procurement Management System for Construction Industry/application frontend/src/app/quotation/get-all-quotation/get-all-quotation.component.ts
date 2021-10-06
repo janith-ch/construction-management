@@ -23,8 +23,8 @@ export class GetAllQuotationComponent implements OnInit {
   ngOnInit(): void {
     this.getData();
     this.dataTable = {
-      headerRow: ['Order ID', 'Date Period', 'No of Quotations', 'Action'],
-      footerRow: ['Order ID', 'Date Period', 'No of Quotations', 'Action'],
+      headerRow: ['ID', 'Date Period', 'Status', 'Action'],
+      footerRow: ['ID', 'Date Period', 'Status', 'Action'],
       dataRows: [],
     };
   }

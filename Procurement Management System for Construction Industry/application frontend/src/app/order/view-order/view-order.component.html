@@ -19,8 +19,10 @@
                                         <th>{{ dataTable.headerRow[0] }}</th>
                                         <th>{{ dataTable.headerRow[1] }}</th>
                                         <th>{{ dataTable.headerRow[2] }}</th>
+                                        <th>{{ dataTable.footerRow[3] }}</th>
+                                        <th>{{ dataTable.footerRow[4] }}</th>
                                         <th class="disabled-sorting text-center">
-                                            {{ dataTable.headerRow[3] }}
+                                            {{ dataTable.headerRow[5] }}
                                         </th>
                                     </tr>
                                 </thead>
@@ -29,23 +31,28 @@
                                         <th>{{ dataTable.headerRow[0] }}</th>
                                         <th>{{ dataTable.headerRow[1] }}</th>
                                         <th>{{ dataTable.headerRow[2] }}</th>
+                                        <th>{{ dataTable.footerRow[3] }}</th>
+                                        <th>{{ dataTable.footerRow[4] }}</th>
                                         <th class="disabled-sorting text-center">
-                                            {{ dataTable.headerRow[3] }}
+                                            {{ dataTable.headerRow[5] }}
                                         </th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
                                     <tr *ngFor="let row of dataTable.dataRows">
-                                        <td>#QUO00{{ row.id }}</td>
-                                        <td> {{ row.date }} - {{row.validLastDate}}</td>
-                                        <td><span class="badge badge-warning" *ngIf="row.isApproved == 2">PENDING</span>
+                                        <td>#OR00{{ row.id }}</td>
+                                        <td>{{ row.siteMangerFirstName }} {{ row.siteManagerLastName }}</td>
+                                        <td>{{ row.orderDate }} - {{ row.deliveryDate }}</td>
+                                        <td>RS.{{ row.totalCost }}.00</td>
+                                        <td><span class="badge badge-warning" *ngIf="row.isApprove == 2">PENDING</span>
                                             <span class="badge badge-success"
-                                                *ngIf="(row.isApproved == 1||row.isApproved ==3)">APPROVED</span>
-                                            <span class="badge badge-danger" *ngIf="row.isApproved == 0">REJECTED</span>
+                                                *ngIf="(row.isApprove == 1||row.isApprove ==3)">APPROVED</span>
+                                            <span class="badge badge-danger" *ngIf="row.isApprove == 0">REJECTED</span>
                                         </td>
+
                                         <td class="text-center">
                                             <a class="btn btn-link btn-success btn-just-icon edit"><i
-                                                    class="material-icons" (click)="ViewQuotation(row.id)">edit</i></a>
+                                                    class="material-icons" (click)="ViewOrder(row.id)">edit</i></a>
 
                                         </td>
                                     </tr>

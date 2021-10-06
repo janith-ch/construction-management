@@ -1,16 +1,16 @@
-import { QuotaionService } from 'src/app/services/quotaion.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { NotificationUtilsService } from 'src/app/utils/notification-utils.service';
 import { OrderService } from 'src/app/services/orderService';
+import { QuotaionService } from 'src/app/services/quotaion.service';
+import { NotificationUtilsService } from 'src/app/utils/notification-utils.service';
 
 @Component({
-  selector: 'app-view-order',
-  templateUrl: './view-order.component.html',
-  styleUrls: ['./view-order.component.scss'],
+  selector: 'app-view-order-details',
+  templateUrl: './view-order-details.component.html',
+  styleUrls: ['./view-order-details.component.scss'],
 })
-export class ViewOrderComponent implements OnInit {
+export class ViewOrderDetailsComponent implements OnInit {
   orderID: string;
   order: any;
 
@@ -19,7 +19,7 @@ export class ViewOrderComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private notificationUtils: NotificationUtilsService,
-    private quotationservice: QuotaionService
+    private orderService: OrderService
   ) {
     this.orderID = this.route.snapshot.queryParamMap.get('orderID');
   }
@@ -30,16 +30,16 @@ export class ViewOrderComponent implements OnInit {
   }
 
   getData() {
-    this.quotationservice.gerOrderByID(this.orderID).subscribe((data) => {
+    this.orderService.getOrderByID(this.orderID).subscribe((data) => {
       this.order = data.dataBundle;
     });
   }
 
   changeStatus(status) {
-    this.quotationservice
+    this.orderService
       .updateOrderStatus(this.orderID, status)
       .subscribe((data) => {
-        this.router.navigateByUrl('/quotaion/summary');
+        this.router.navigateByUrl('/order/view');
         this.notificationUtils.showSuccessMessage('Order Status Updated');
       });
   }

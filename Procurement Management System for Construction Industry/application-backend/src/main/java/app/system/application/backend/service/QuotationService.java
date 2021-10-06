@@ -27,7 +27,7 @@ public class QuotationService implements QuotationInterface {
 	@Override
 	public int save(QuotationDto quotationDto) {
 		
-		String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()); 
+	//	String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		
 		double quanitity = quotationDto.getQuanitity();
 		double unitPrice = quotationDto.getUnitCost();
@@ -36,9 +36,10 @@ public class QuotationService implements QuotationInterface {
 		
 		quotationDto.setAmount(amount);
 	 
-		quotationDto.setDate(timeStamp);
+	//	quotationDto.setDate(timeStamp);
 		
 		quotationDto.setIsApproved(2);
+
 		
 		return quotationRepository.save(quotationDto);
 			
@@ -75,11 +76,11 @@ public class QuotationService implements QuotationInterface {
 		
 		for (OrderDto dto: allList) {
 			
-			double amount = dto.getTotalCost();
+		//	double amount = dto.getTotalCost();
 			
 			int isApprove = dto.getIsApprove();
 			
-			if(amount >= 100000 && isApprove == 2 ) {
+			if(isApprove == 1 ) {
 				
 				quotationOrderList.add(dto);
 				
@@ -94,7 +95,7 @@ public class QuotationService implements QuotationInterface {
 
 	@Override
 	public int updateQuotationStatus(int id,int status) {
-	
+
 		return quotationRepository.updateStatus(id,status);
 	}		
 	

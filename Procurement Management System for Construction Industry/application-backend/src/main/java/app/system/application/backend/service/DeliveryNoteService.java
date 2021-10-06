@@ -22,6 +22,9 @@ public class DeliveryNoteService implements DeliveryNoteInterface {
 	@Autowired
 	MaterialService materialService;
 
+	@Autowired
+	QuotationService quotationService;
+
 	@Override
 	public int save(DeliveryNoteDto deliveryNoteDto) {
 		
@@ -83,18 +86,19 @@ public class DeliveryNoteService implements DeliveryNoteInterface {
 		
 		ArrayList<OrderDto> deliveryOrderDtos = new ArrayList<OrderDto>();
 		
-		List<OrderDto> allList = orderService.findAll();
+		List<OrderDto> allList = orderService.receiveOrders();
+
 		
-		for(OrderDto order : allList) {
-			
-			int isApproved = order.getIsApprove();
-			String deliveryStatus = order.getDeliveryStatus();
-			
-			if(isApproved == 1 && deliveryStatus != DeliveryEnum.DISPATCHED.getStatus()) {
-				
-				deliveryOrderDtos.add(order);
-			}
-		}
+//		for(OrderDto order : allList) {
+//
+//			int isApproved = order.getIsApprove();
+//			String deliveryStatus = order.getDeliveryStatus();
+//
+//		//	if(isApproved == 1 && deliveryStatus != DeliveryEnum.DISPATCHED.getStatus()) {
+//		if(isApproved==1){
+//				deliveryOrderDtos.add(order);
+//			}
+//		}
 		
 		return deliveryOrderDtos;
 		
