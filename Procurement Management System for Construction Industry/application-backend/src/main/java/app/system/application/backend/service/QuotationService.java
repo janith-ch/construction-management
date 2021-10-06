@@ -80,7 +80,9 @@ public class QuotationService implements QuotationInterface {
 			
 			int isApprove = dto.getIsApprove();
 			
-			if(isApprove == 1 ) {
+			double orderTotal = dto.getTotalCost();
+			
+			if(isApprove == 1 && orderTotal >= 100000) {
 				
 				quotationOrderList.add(dto);
 				
