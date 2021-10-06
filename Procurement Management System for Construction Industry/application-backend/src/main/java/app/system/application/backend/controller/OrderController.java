@@ -36,7 +36,6 @@ public class OrderController {
 		catch(Exception e) {
 			return  ResponseEntity.ok(new CommonResponse<String>(false,e.getMessage(),"Insert error order"));
 
-
 		}
 	}
 
