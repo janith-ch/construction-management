@@ -118,8 +118,45 @@ public class QuotationService implements QuotationInterface {
 	@Override
 	public int updateQuotationStatus(int id,int status) {
 
-		return quotationRepository.updateStatus(id,status);
+		int updateResult = quotationRepository.updateStatus(id,status);
+		
+		if(updateResult >= 1) {
+			
+			QuotationDto quotationDto = quotationRepository.findById(id).get();
+			
+			int orderId = quotationDto.getOrderId();
+			
+			OrderDto orderDto = orderRepository.findById(orderId).get();
+			
+			orderDto.setQuotationStatus(1);
+			
+			int updateOrderResult = orderRepository.update(orderDto, orderId);
+			
+			
+			if(updateOrderResult >= 1) {
+				return 1;
+			
+			
+			}else {
+				
+				return 0;
+			}
+			
+			
+			
+			
+		}else {
+			
+			return 0;
+		}
+		
+		
+	
+	
+	
 	}		
+	
+	
 	
 	
 
