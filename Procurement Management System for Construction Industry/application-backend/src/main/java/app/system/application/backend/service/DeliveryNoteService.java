@@ -96,7 +96,7 @@ public class DeliveryNoteService implements DeliveryNoteInterface {
 			int quotationStatus = order.getQuotationStatus();
 			
 
-			if(isApproved == 1 && deliveryStatus != DeliveryEnum.DISPATCHED.getStatus() && quotationStatus == 1) {
+			if(isApproved == 1 && deliveryStatus != DeliveryEnum.DISPATCHED.getStatus() && quotationStatus == 1 || quotationStatus == 3) {
 //		if(isApproved==1){
 				deliveryOrderDtos.add(order);
 			}

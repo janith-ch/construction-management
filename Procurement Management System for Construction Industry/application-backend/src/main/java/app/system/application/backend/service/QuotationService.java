@@ -128,7 +128,7 @@ public class QuotationService implements QuotationInterface {
 			
 			OrderDto orderDto = orderRepository.findById(orderId).get();
 			
-			orderDto.setQuotationStatus(1);
+			orderDto.setQuotationStatus(3);
 			
 			int updateOrderResult = orderRepository.update(orderDto, orderId);
 			
