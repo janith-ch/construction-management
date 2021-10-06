@@ -49,10 +49,13 @@ public class OrderService implements OrderInt {
       if (totalCost >= limitValue) {
     	  
     	  orderDto.setIsApprove(2);
+    	  orderDto.setQuotationStatus(0);
+    	  
     	  
       }else {
     	  
     	  orderDto.setIsApprove(1);
+    	  orderDto.setQuotationStatus(1);
       }
       
      return orderRepository.save(orderDto);
