@@ -9,7 +9,9 @@ import app.system.application.backend.constant.DeliveryEnum;
 import app.system.application.backend.model.dto.DeliveryNoteDto;
 import app.system.application.backend.model.dto.OrderDto;
 import app.system.application.backend.repository.DeliveryNoteRepository;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class DeliveryNoteService implements DeliveryNoteInterface {
 	
@@ -87,6 +89,8 @@ public class DeliveryNoteService implements DeliveryNoteInterface {
 		ArrayList<OrderDto> deliveryOrderDtos = new ArrayList<OrderDto>();
 		
 		List<OrderDto> allList = orderService.receiveOrders();
+		
+		log.info("Status " + DeliveryEnum.DELIVERING.getStatus());
 
 		
 		for(OrderDto order : allList) {

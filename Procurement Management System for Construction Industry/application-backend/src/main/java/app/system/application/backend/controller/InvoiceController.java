@@ -24,7 +24,7 @@ public class InvoiceController {
 	private InvoiceService invoiceService;
 
 	@PostMapping("/v1/invoices")
-	public ResponseEntity<?> addSupplier(@RequestBody InvoiceDto invoiceDto){
+	public ResponseEntity<?> addInvoice(@RequestBody InvoiceDto invoiceDto){
 
 		try {
 
@@ -47,7 +47,7 @@ public class InvoiceController {
 
 
 	@PutMapping("/v1/invoices/{id}")
-	public ResponseEntity<?> updateSupplierById(@RequestBody InvoiceDto invoiceDto,@PathVariable int id) {
+	public ResponseEntity<?> updateInvoiceById(@RequestBody InvoiceDto invoiceDto,@PathVariable int id) {
 
 		int result = invoiceService.update(invoiceDto,id);
 
@@ -65,7 +65,7 @@ public class InvoiceController {
 	}
 
 	@GetMapping("/v1/invoices/{id}")
-	public ResponseEntity<?> getSupplierById(@PathVariable int id) {
+	public ResponseEntity<?> getInvoiceById(@PathVariable int id) {
 
 		try {
 
@@ -84,7 +84,7 @@ public class InvoiceController {
 
 
 	@GetMapping("/v1/invoices")
-	public  ResponseEntity<?> getSupplierList(){
+	public  ResponseEntity<?> getInvoiceList(){
 
 		List<InvoiceDto> result = invoiceService.findAll();
 
@@ -94,7 +94,7 @@ public class InvoiceController {
 
 
 	@DeleteMapping("/v1/invoices/{id}")
-	public ResponseEntity<?> deleteSupplierById(@PathVariable int id) {
+	public ResponseEntity<?> deleteInvoiceById(@PathVariable int id) {
 
 		int result = invoiceService.delete(id);
 
