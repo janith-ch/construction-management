@@ -2,6 +2,7 @@ package app.system.application.backend.controller;
 
 import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import app.system.application.backend.model.dto.InvoiceDto;
 import app.system.application.backend.response.CommonResponse;
 import app.system.application.backend.service.InvoiceService;
-
+@Slf4j
 @RestController
 @RequestMapping("api")
 public class InvoiceController {
@@ -39,6 +40,7 @@ public class InvoiceController {
 			}
 		}
 		catch(Exception e) {
+			log.info("error "+ e);
 			return  ResponseEntity.ok(new CommonResponse<InvoiceDto>(false,e.getMessage(),invoiceDto));
 
 

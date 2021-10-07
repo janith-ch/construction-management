@@ -104,6 +104,7 @@ public class Quotations extends Fragment {
                                 quotation.setQuantity(obj.getDouble("quantity"));
                                 quotation.setSiteId(obj.getInt("siteId"));
                                 quotation.setSiteName(obj.getString("siteName"));
+                                quotation.setQuotationStatus(obj.getInt("quotationStatus"));
 
                                 if((obj.getInt("isApprove"))==1){
 

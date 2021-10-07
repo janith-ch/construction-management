@@ -64,6 +64,7 @@
     <string name="delivered_order_no">Select the Delivered Order Id</string>
     <string name="delivered_quantity">Delivered Quantity</string>
     <string name="feedback">Feedback</string>
+    <string name="pending">QUOTATION SUBMITTED</string>
 
 
 </resources>

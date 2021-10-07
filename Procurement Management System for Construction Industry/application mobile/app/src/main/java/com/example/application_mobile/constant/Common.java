@@ -13,5 +13,6 @@ public class Common {
     private  String CREATE_DELIVERY_ENDPOINT = "delivery-notes";
     private  String DELIVERY_LIST_ENDPOINT = "delivery-notes";
     private  String INVOICE_LIST_ENDPOINT = "invoices";
+    private  String ORDER_REF_DELIVERING = "orders/delivering";
 
 }

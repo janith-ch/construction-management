@@ -1,11 +1,7 @@
 package com.example.application_mobile.fragment.order;
-
-import android.content.Context;
 import android.os.Bundle;
-
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,50 +10,39 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.application_mobile.R;
-import com.example.application_mobile.model.Material;
-import com.example.application_mobile.model.Order;
+import com.example.application_mobile.constant.Common;
 import com.example.application_mobile.model.Site;
-import com.example.application_mobile.service.JsonReader;
-import com.google.gson.JsonArray;
 import com.kofigyan.stateprogressbar.StateProgressBar;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import lombok.SneakyThrows;
 
-
 public class CreateOrderStepOne extends Fragment {
-
-    JSONObject object;
-
-    public CreateOrderStepOne() {
-        // Required empty public constructor
-    }
 
     private Spinner site_dropdown, location_dropdown;
     private Button button;
     private StateProgressBar stateProgressBar;
+    private RequestQueue requestQueue;
+    private JsonObjectRequest jsonObjectRequest;
+    private Common common = new Common();
     String[] descriptionData = {"Select Project", "Select Material", "Select Deadline"};
     String url = "http://192.168.1.5:8088/api/v1/sites";
 
+    public CreateOrderStepOne() {
+
+    }
 
     @SneakyThrows
     @Override
@@ -104,8 +89,6 @@ public class CreateOrderStepOne extends Fragment {
 
     }
 
-    private RequestQueue requestQueue;
-    private JsonObjectRequest jsonObjectRequest;
 
     private void getSiteDetails() {
 

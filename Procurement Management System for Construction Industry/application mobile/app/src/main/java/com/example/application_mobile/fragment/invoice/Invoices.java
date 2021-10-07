@@ -24,7 +24,6 @@ import com.example.application_mobile.R;
 import com.example.application_mobile.adapter.InvoiceAdapter;
 import com.example.application_mobile.constant.Common;
 import com.example.application_mobile.model.Invoice;
-import com.example.application_mobile.model.Quotation;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,8 +45,9 @@ public class Invoices extends Fragment {
     private Common common = new Common();
 
     public Invoices() {
-        // Required empty public constructor
+
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -57,14 +57,12 @@ public class Invoices extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-     //   invoiceList.clear();
-     //   invoiceList.add(new Invoice("1","10","CEMENT","10","packets","2021/12/03","COLOMBO","COLOMBO_03","20000.00"));
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_invoices, container, false);
         recyclerView = view.findViewById(R.id.invoice_recycle_view);
-        createInvoice=view.findViewById(R.id.invoice_create);
-        invoiceAdapter =  new InvoiceAdapter(invoiceList,getContext());
+        createInvoice = view.findViewById(R.id.invoice_create);
+        invoiceAdapter = new InvoiceAdapter(invoiceList, getContext());
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -109,7 +107,7 @@ public class Invoices extends Fragment {
 
                                 invoice.setId(obj.getString("id"));
                                 invoice.setMaterial(obj.getString("materialName"));
-                           //     invoice.setQuantityType(obj.getString("quanitiyType"));
+                                //     invoice.setQuantityType(obj.getString("quanitiyType"));
                                 invoice.setQuantity(obj.getString("quantity"));
                                 invoice.setTotalPrice(obj.getString("total"));
                                 invoice.setSite(obj.getString("siteName"));
