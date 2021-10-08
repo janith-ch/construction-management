@@ -21,9 +21,6 @@ public class DeliveryNoteRepositoryTest {
 	private DeliveryNoteRepository deliveryNoteRepository;
 	
 	
-	int id;
-	
-	
 	@Test
 	@Order(1)
 	public void testDeliveryNoteCreate() {
@@ -37,9 +34,12 @@ public class DeliveryNoteRepositoryTest {
 		deliveryNoteDto.setEstimatedDeliveryDateTime("2021-08-05");
 		deliveryNoteDto.setNote("test note");
 		
-		id = deliveryNoteRepository.save(deliveryNoteDto);
+		int id = deliveryNoteRepository.save(deliveryNoteDto);
 		
 		assertThat(id).isGreaterThan(0);
+		
+		int result = deliveryNoteRepository.delete(id);
+		assertEquals(1, result);
 		
 	}
 		
@@ -60,6 +60,16 @@ public class DeliveryNoteRepositoryTest {
 			
 			
 			DeliveryNoteDto deliveryNoteDto = new DeliveryNoteDto();
+			
+			
+			deliveryNoteDto.setOrderId(1);
+			deliveryNoteDto.setDeliveryStatus("DELIVERING");
+			deliveryNoteDto.setDriverName("Nimal Wijesinghe");
+			deliveryNoteDto.setVehicleNo("CBJ-0989");
+			deliveryNoteDto.setEstimatedDeliveryDateTime("2021-08-05");
+			deliveryNoteDto.setNote("test note");
+			
+		  int	id = deliveryNoteRepository.save(deliveryNoteDto);
 
 			
 		
@@ -72,13 +82,15 @@ public class DeliveryNoteRepositoryTest {
 			
 			int respone = deliveryNoteRepository.update(deliveryNoteDto, id);
 			assertEquals(1,respone);
-	
 			
 			
+			int result = deliveryNoteRepository.delete(id);
+			assertEquals(1, result);
+			
+		
 		}
 		
-		
-		
+				
 		@Test
 		@Order(3)
 		public void testGetSingleDeliveryNote () {
@@ -92,12 +104,14 @@ public class DeliveryNoteRepositoryTest {
 			deliveryNoteDto.setEstimatedDeliveryDateTime("2021-08-05");
 			deliveryNoteDto.setNote("test note");
 			
-			id = deliveryNoteRepository.save(deliveryNoteDto);
+			int id = deliveryNoteRepository.save(deliveryNoteDto);
 			
 			
 			DeliveryNoteDto deliveryNoteDtos = deliveryNoteRepository.findById(id).get();
 			assertEquals("CBJ-0989",deliveryNoteDtos.getVehicleNo());
 			
+			int result = deliveryNoteRepository.delete(id);
+			assertEquals(1, result);
 			
 		}
 		

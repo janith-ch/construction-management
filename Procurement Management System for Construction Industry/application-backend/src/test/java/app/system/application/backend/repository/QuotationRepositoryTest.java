@@ -13,7 +13,10 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+
 import app.system.application.backend.model.dto.QuotationDto;
+import app.system.application.backend.service.QuotationService;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -32,13 +35,18 @@ public class QuotationRepositoryTest {
 
 		QuotationDto quotationDto = new QuotationDto();
 
-		quotationDto.setUnitCost(1005);
-		quotationDto.setQuanitity(77);
+		quotationDto.setUnitCost(1100);
+		quotationDto.setQuanitity(300);
 		quotationDto.setDate("2021-08-05");
 		quotationDto.setValidLastDate("2021-08-05");
-		quotationDto.setOrderId(1);
+		quotationDto.setOrderId(200345);
 		quotationDto.setIsApproved(1);
-		assertNotNull(quotationRepository.save(quotationDto));
+		int id = quotationRepository.save(quotationDto);
+
+		assertThat(id).isGreaterThan(0);
+
+		int result = quotationRepository.delete(id);
+		assertEquals(1, result);
 	}	
 
 
@@ -59,27 +67,28 @@ public class QuotationRepositoryTest {
 
 		QuotationDto quotationDto = new QuotationDto();
 
-		quotationDto.setUnitCost(1005);
-		quotationDto.setQuanitity(77);
+		quotationDto.setUnitCost(1200);
+		quotationDto.setQuanitity(200);
 		quotationDto.setDate("2021-08-05");
 		quotationDto.setValidLastDate("2021-08-05");
-		quotationDto.setOrderId(1);
+		quotationDto.setOrderId(200344);
 		quotationDto.setIsApproved(1);
 
 		int id = quotationRepository.save(quotationDto);
+		log.info("id " + id);
 
-
-		quotationDto.setUnitCost(100);
-		quotationDto.setQuanitity(77);
-		quotationDto.setDate("2021-08-05");
-		quotationDto.setValidLastDate("2021-08-05");
+		quotationDto.setUnitCost(1000);
+		quotationDto.setQuanitity(100);
+		quotationDto.setDate("2021-08-04");
+		quotationDto.setValidLastDate("2021-08-06");
 		quotationDto.setOrderId(1);
 		quotationDto.setIsApproved(2);
 
 		int respone = quotationRepository.update(quotationDto, id);
 		assertEquals(1,respone);
 
-
+		int result = quotationRepository.delete(id);
+		assertEquals(1, result);
 	}
 
 
@@ -90,21 +99,24 @@ public class QuotationRepositoryTest {
 
 		QuotationDto quotationDto = new QuotationDto();
 
-		quotationDto.setUnitCost(1005);
-		quotationDto.setQuanitity(77);
+		quotationDto.setUnitCost(1500);
+		quotationDto.setQuanitity(50);
 		quotationDto.setDate("2021-08-05");
 		quotationDto.setValidLastDate("2021-08-05");
-		quotationDto.setOrderId(1);
+		quotationDto.setOrderId(14876);
 		quotationDto.setIsApproved(1);
 
 		int id = quotationRepository.save(quotationDto);
 
-		log.info("id " + id);
 
 		QuotationDto quotationDto2 = quotationRepository.findById(id).get();
-		assertEquals(1,quotationDto2.getOrderId());
+		assertEquals(14876,quotationDto2.getOrderId());
+		assertEquals(50,quotationDto2.getQuanitity());
+		assertEquals(1500,quotationDto2.getUnitCost());
 
 
+		int result = quotationRepository.delete(id);
+		assertEquals(1, result);
 	}
 
 

@@ -34,7 +34,12 @@ public class InvoiceRepositoryTest {
 		invoiceDto.setTotal(100000.0);
 		invoiceDto.setIsApproved(1);
 		invoiceDto.setOrderId(20045);
-		assertNotNull(invoiceRepository.insert(invoiceDto));
+		int id = invoiceRepository.insert(invoiceDto);
+
+		assertThat(id).isGreaterThan(0);
+
+		int result = invoiceRepository.delete(id);
+		assertEquals(1, result);
 	}	
 		
 		
@@ -75,6 +80,8 @@ public class InvoiceRepositoryTest {
 			int respone = invoiceRepository.update(invoiceDto, id);
 			assertEquals(1,respone);
 			
+			int result = invoiceRepository.delete(id);
+			assertEquals(1, result);
 			
 		}
 		
@@ -94,13 +101,13 @@ public class InvoiceRepositoryTest {
 			invoiceDto.setOrderId(200);
 			
 			int id = invoiceRepository.insert(invoiceDto);
-			
-			log.info("id " + id);
+		
 			
 			InvoiceDto invoice = invoiceRepository.findById(id).get();
 			assertEquals(200,invoice.getOrderId());
 			
-			
+			int result = invoiceRepository.delete(id);
+			assertEquals(1, result);
 		}
 		
 		
