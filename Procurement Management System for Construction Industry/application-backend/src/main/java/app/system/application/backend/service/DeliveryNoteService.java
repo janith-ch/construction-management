@@ -90,7 +90,6 @@ public class DeliveryNoteService implements DeliveryNoteInterface {
 		
 		List<OrderDto> allList = orderService.receiveOrders();
 		
-		log.info("Status " + DeliveryEnum.DELIVERING.getStatus());
 
 		
 		for(OrderDto order : allList) {
@@ -100,10 +99,18 @@ public class DeliveryNoteService implements DeliveryNoteInterface {
 			int quotationStatus = order.getQuotationStatus();
 			
 
-			if(isApproved == 1 && deliveryStatus != DeliveryEnum.DELIVERING.getStatus() && quotationStatus == 1 || quotationStatus == 3) {
-//		if(isApproved==1){
-				deliveryOrderDtos.add(order);
+			if( isApproved == 1 && deliveryStatus.contentEquals(DeliveryEnum.PENDING.getStatus()) ) {
+
+				if( quotationStatus == 1 || quotationStatus == 3) {
+					
+			
+					deliveryOrderDtos.add(order);
+					
+				}
+				
+				
 			}
+				
 		}
 		
 		return deliveryOrderDtos;

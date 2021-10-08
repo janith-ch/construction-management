@@ -25,7 +25,7 @@ public class QuotationConstant {
 			+ "quantity = ?,"
 			+ "qutation_date = ?,"
 			+ "valid_last_date = ?,"
-			+ "amount = ? "
+			+ "amount = ?, "
 			+ "order_id = ?, "
 			+ "is_approved = ? "
 			+ "where id = ?";

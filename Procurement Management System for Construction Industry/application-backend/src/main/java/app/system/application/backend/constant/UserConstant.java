@@ -37,7 +37,7 @@ public class UserConstant {
 	
 	
 	final String FIND_USER_BYID = "select * from user where id = ?";
-	
+
 	
 	
 	final String DELETE_USER = "delete from user where id = ?";
