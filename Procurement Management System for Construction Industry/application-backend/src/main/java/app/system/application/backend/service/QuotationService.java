@@ -123,20 +123,24 @@ public class QuotationService implements QuotationInterface {
 
 		for (OrderDto dto: allList) {
 
-			//	double amount = dto.getTotalCost();
-
 			int isApprove = dto.getIsApprove();
 
 			double orderTotal = dto.getTotalCost();
 
 			int quotationStatus = dto.getQuotationStatus();
 
-			if(isApprove == 1 && orderTotal >= 100000 && quotationStatus == 3 ) {
-
-				quotationOrderList.add(dto);
-
-
+			if(isApprove == 1 && orderTotal >= 100000) {
+				
+				if(quotationStatus == 3 || quotationStatus == 2  ) {
+					
+					quotationOrderList.add(dto);
+					
+					
+				}
+				
+				
 			}
+				
 
 
 		}
