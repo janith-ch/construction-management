@@ -12,6 +12,7 @@ public class Invoice {
     private String id;
     private String pur;
     private String material;
+    private int orderId;
     private String quantity;
     private String quantityType;
     private String createdDate;

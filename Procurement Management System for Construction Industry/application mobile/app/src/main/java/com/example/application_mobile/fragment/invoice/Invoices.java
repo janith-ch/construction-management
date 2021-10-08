@@ -107,7 +107,7 @@ public class Invoices extends Fragment {
 
                                 invoice.setId(obj.getString("id"));
                                 invoice.setMaterial(obj.getString("materialName"));
-                                //     invoice.setQuantityType(obj.getString("quanitiyType"));
+                                invoice.setOrderId(obj.getInt("orderId"));
                                 invoice.setQuantity(obj.getString("quantity"));
                                 invoice.setTotalPrice(obj.getString("total"));
                                 invoice.setSite(obj.getString("siteName"));

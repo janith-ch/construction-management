@@ -65,6 +65,7 @@
     <string name="delivered_quantity">Delivered Quantity</string>
     <string name="feedback">Feedback</string>
     <string name="pending">QUOTATION SUBMITTED</string>
+    <string name="date">2021/10/09</string>
 
 
 </resources>

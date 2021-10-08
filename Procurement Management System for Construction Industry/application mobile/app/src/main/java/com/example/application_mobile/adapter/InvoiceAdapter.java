@@ -46,14 +46,14 @@ public class InvoiceAdapter extends RecyclerView.Adapter<InvoiceAdapter.InvoiceV
 
         final List<Order> oderData = new ArrayList<>();
 
-        holder.textView_1.setText(("A00".concat(listdata.get(position).getId())));
-        holder.textView_2.setText(listdata.get(position).getPur());
+        holder.textView_1.setText(("INV00".concat(listdata.get(position).getId())));
+        holder.textView_2.setText("PU00".concat(String.valueOf(listdata.get(position).getOrderId())));
         holder.textView_3.setText(listdata.get(position).getSite());
         holder.textView_4.setText( listdata.get(position).getLocation());
         holder.textView_5.setText(listdata.get(position).getMaterial());
         holder.textView_6.setText(String.valueOf(listdata.get(position).getQuantity()));
         holder.textView_7.setText(listdata.get(position).getCreatedDate());
-        holder.textView_8.setText(listdata.get(position).getTotalPrice());
+        holder.textView_8.setText("RS.".concat(listdata.get(position).getTotalPrice()).concat(".00"));
         holder.cardView.setOnClickListener(new View.OnClickListener() {
 
             @Override
