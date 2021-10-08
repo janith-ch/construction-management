@@ -16,6 +16,8 @@ public class InvoiceDto {
 	private String siteName;//view
 	private String materialName;//view
     private String supplierName;//view
+    private double unitType ;
+    private String address; 
 	private int materialId;
 	private double quantity;
 	private double total;
