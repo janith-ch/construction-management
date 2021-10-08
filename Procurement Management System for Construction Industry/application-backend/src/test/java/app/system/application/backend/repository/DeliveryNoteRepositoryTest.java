@@ -69,7 +69,7 @@ public class DeliveryNoteRepositoryTest {
 			deliveryNoteDto.setEstimatedDeliveryDateTime("2021-08-05");
 			deliveryNoteDto.setNote("test note");
 			
-		  int	id = deliveryNoteRepository.save(deliveryNoteDto);
+		  int id = deliveryNoteRepository.save(deliveryNoteDto);
 
 			
 		

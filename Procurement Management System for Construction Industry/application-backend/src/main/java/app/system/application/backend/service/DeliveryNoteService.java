@@ -46,6 +46,7 @@ public class DeliveryNoteService implements DeliveryNoteInterface {
 			int materialId = orderDto.getMaterialId();
 			
 			int updateRespone = materialService.updateMaterialStock(quantity, materialId);
+			log.info("Quantity"+ quantity);
 			
 			if(updateRespone != 0) {
 				

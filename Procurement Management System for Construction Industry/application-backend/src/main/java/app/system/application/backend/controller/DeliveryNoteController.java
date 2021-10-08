@@ -29,7 +29,7 @@ public class DeliveryNoteController {
 				return  ResponseEntity.ok(new CommonResponse<Integer>(true,null,result));
 
 			}else {
-				return  ResponseEntity.ok(new CommonResponse<Integer>(false,"Cannot Material site",result));
+				return  ResponseEntity.ok(new CommonResponse<Integer>(false,"Cannot add delivery note ",result));
 			}
 		}
 		catch(Exception e) {
