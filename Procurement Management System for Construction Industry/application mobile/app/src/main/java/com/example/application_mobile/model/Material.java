@@ -18,7 +18,7 @@ public class Material {
     private String description;
     private double stock;
 
-    public String toString(){
+    public String toString() {
         return name;
     }
 }

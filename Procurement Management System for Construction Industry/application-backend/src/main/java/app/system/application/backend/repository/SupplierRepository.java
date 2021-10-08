@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -24,7 +25,8 @@ public class SupplierRepository {
 	@Autowired
 	SupplierConstant supplierConstant;
 	
-	@Autowired 
+	@Autowired
+	@Qualifier("system-jdbc-template")
 	JdbcTemplate jdbcTemplate;
 
 	public int save(Supplier supplier) {

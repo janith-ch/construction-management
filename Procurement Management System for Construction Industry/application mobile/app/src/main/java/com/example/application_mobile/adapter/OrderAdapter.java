@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.application_mobile.R;
+import com.example.application_mobile.constant.Common;
 import com.example.application_mobile.model.Order;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import java.util.List;
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHolder> {
 
     private List<Order> listdata;
+    private Common common = new Common();
 
     public OrderAdapter(List<Order> listdata) {
         this.listdata = listdata;
@@ -43,7 +45,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
         final List<Order> oderData = new ArrayList<>();
 
-        holder.textView_1.setText(String.valueOf("A00"+listdata.get(position).getId()));
+        holder.textView_1.setText(String.valueOf(common.getOR()+listdata.get(position).getId()));
         holder.textView_2.setText(listdata.get(position).getOrderDate());
         holder.textView_3.setText(listdata.get(position).getMaterialName());
         holder.textView_4.setText(String.valueOf( listdata.get(position).getQuantity()).

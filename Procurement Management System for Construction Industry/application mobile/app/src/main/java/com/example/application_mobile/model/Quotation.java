@@ -14,6 +14,7 @@ public class Quotation {
     private double quantity;
     private String quantityType;
     private int siteId;
+    private int quotationStatus;
     private String departmentStatus;
     private String siteName;
     private String fromDate;

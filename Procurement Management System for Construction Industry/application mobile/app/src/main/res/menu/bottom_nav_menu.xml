@@ -3,17 +3,17 @@
     <item
         android:id="@+id/order"
         android:title="Order"
-        android:icon="@drawable/order_icon"/>
+        android:icon="@drawable/order_removebg_preview"/>
     <item
         android:id="@+id/delivery"
         android:title="Delivery"
-        android:icon="@drawable/delivery_bg"/>
+        android:icon="@drawable/tkpm63y"/>
     <item
         android:id="@+id/invoice"
         android:title="Invoice"
-        android:icon="@drawable/invoice_png"/>
+        android:icon="@drawable/delivery_bg"/>
     <item
         android:id="@+id/quotation"
-        android:title="quotation"
-        android:icon="@drawable/quatation_icon"/>
+        android:title="Quotation"
+        android:icon="@drawable/quatation_removebg_preview"/>
 </menu>

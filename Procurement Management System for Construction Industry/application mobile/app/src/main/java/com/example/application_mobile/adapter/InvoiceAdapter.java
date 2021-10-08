@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.application_mobile.R;
+import com.example.application_mobile.constant.Common;
 import com.example.application_mobile.model.Invoice;
 import com.example.application_mobile.model.Order;
 
@@ -24,6 +25,7 @@ public class InvoiceAdapter extends RecyclerView.Adapter<InvoiceAdapter.InvoiceV
 
     private List<Invoice> listdata;
     private Context context;
+    private Common common = new Common();
 
     public InvoiceAdapter(List<Invoice> listdata, Context context) {
         this.context = context;
@@ -46,14 +48,14 @@ public class InvoiceAdapter extends RecyclerView.Adapter<InvoiceAdapter.InvoiceV
 
         final List<Order> oderData = new ArrayList<>();
 
-        holder.textView_1.setText(("A00".concat(listdata.get(position).getId())));
-        holder.textView_2.setText(listdata.get(position).getPur());
+        holder.textView_1.setText((common.getINV().concat(listdata.get(position).getId())));
+        holder.textView_2.setText("PU00".concat(String.valueOf(listdata.get(position).getOrderId())));
         holder.textView_3.setText(listdata.get(position).getSite());
-        holder.textView_4.setText( listdata.get(position).getLocation());
+        holder.textView_4.setText(listdata.get(position).getLocation());
         holder.textView_5.setText(listdata.get(position).getMaterial());
         holder.textView_6.setText(String.valueOf(listdata.get(position).getQuantity()));
         holder.textView_7.setText(listdata.get(position).getCreatedDate());
-        holder.textView_8.setText(listdata.get(position).getTotalPrice());
+        holder.textView_8.setText(common.getRS().concat(listdata.get(position).getTotalPrice()).concat(common.getPOINTS()));
         holder.cardView.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -71,7 +73,7 @@ public class InvoiceAdapter extends RecyclerView.Adapter<InvoiceAdapter.InvoiceV
 
     public static class InvoiceViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textView_1, textView_2,textView_3, textView_4,textView_5, textView_6,textView_7,textView_8;
+        public TextView textView_1, textView_2, textView_3, textView_4, textView_5, textView_6, textView_7, textView_8;
         public CardView cardView;
 
         public InvoiceViewHolder(View itemView) {

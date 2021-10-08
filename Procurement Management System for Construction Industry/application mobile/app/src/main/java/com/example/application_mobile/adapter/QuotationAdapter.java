@@ -1,7 +1,6 @@
 package com.example.application_mobile.adapter;
 
 import android.annotation.SuppressLint;
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,13 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.application_mobile.R;
+import com.example.application_mobile.constant.QuotationConstant;
 import com.example.application_mobile.fragment.quotation.CreateQuotations;
 import com.example.application_mobile.model.Quotation;
-import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
@@ -29,8 +27,9 @@ import java.util.List;
 public class QuotationAdapter extends RecyclerView.Adapter<QuotationAdapter.QuotationViewHolder> {
 
     private List<Quotation> listdata;
-    Button button;
+    private Button button;
     private Context context;
+    private QuotationConstant quotationConstant = new QuotationConstant();
 
     public QuotationAdapter(List<Quotation> listdata, Context context) {
         this.context = context;
@@ -55,11 +54,11 @@ public class QuotationAdapter extends RecyclerView.Adapter<QuotationAdapter.Quot
         final Quotation quotation = listdata.get(position);
 
         holder.textView_1.setText(listdata.get(position).getMaterialName());
-        holder.textView_2.setText(String.valueOf(listdata.get(position).getQuantity()).concat(" "+listdata.get(position).getQuantityType()));
+        holder.textView_2.setText(String.valueOf(listdata.get(position).getQuantity()).concat(quotationConstant.getSPACE().concat(listdata.get(position).getQuantityType())));
         holder.textView_3.setText(listdata.get(position).getToDate());
         holder.textView_4.setText(listdata.get(position).getFromDate());
         holder.textView_5.setText(listdata.get(position).getDepartmentStatus());
-        holder.textView_6.setText(String.valueOf("A00"+listdata.get(position).getSiteId()));
+        holder.textView_6.setText(String.valueOf(quotationConstant.getSTART()+listdata.get(position).getSiteId()));
         holder.textView_7.setText(listdata.get(position).getSiteName());
         holder.textView_8.setText(listdata.get(position).getSiteLocation());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -71,29 +70,33 @@ public class QuotationAdapter extends RecyclerView.Adapter<QuotationAdapter.Quot
         });
 
         CreateQuotations createQuotations = new CreateQuotations();
+        if (String.valueOf(listdata.get(position).getQuotationStatus()).equals(quotationConstant.getTWO())) {
+            holder.button.setVisibility(View.GONE);
+            holder.textView_9.setVisibility(View.VISIBLE);
+        } else {
+            holder.textView_9.setVisibility(View.GONE);
+            holder.button.setOnClickListener(new View.OnClickListener() {
 
-        holder.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-            @Override
-            public void onClick(View v) {
+                    Bundle bundle = new Bundle();
 
-                Bundle bundle = new Bundle();
+                    bundle.putString(quotationConstant.getMATERIAL_NAME(), listdata.get(position).getMaterialName());
+                    bundle.putString(quotationConstant.getQUANTITY_TYPE(), listdata.get(position).getQuantityType());
+                    bundle.putString(quotationConstant.getFROM_DATE(), listdata.get(position).getFromDate());
+                    bundle.putString(quotationConstant.getTo_DATE(), listdata.get(position).getToDate());
+                    bundle.putInt(quotationConstant.getORDER_ID(), listdata.get(position).getId());
 
-                bundle.putString("qcMaterial", listdata.get(position).getMaterialName());
-                bundle.putString("qcMaterialType", listdata.get(position).getQuantityType());
-                bundle.putString("qcFromDate", listdata.get(position).getFromDate());
-                bundle.putString("qcToDate", listdata.get(position).getToDate());
-                bundle.putInt("qcOrderId",listdata.get(position).getId());
+                    createQuotations.setArguments(bundle);
 
-                createQuotations.setArguments(bundle);
-
-                FragmentTransaction mFragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
-                mFragmentTransaction.replace(R.id.flFragment, createQuotations).commit();
+                    FragmentTransaction mFragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+                    mFragmentTransaction.replace(R.id.flFragment, createQuotations).commit();
 
 
-            }
-        });
-
+                }
+            });
+        }
     }
 
     @Override
@@ -103,7 +106,7 @@ public class QuotationAdapter extends RecyclerView.Adapter<QuotationAdapter.Quot
 
     public static class QuotationViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textView_1, textView_2, textView_3, textView_4, textView_5, textView_6, textView_7, textView_8;
+        public TextView textView_1, textView_2, textView_3, textView_4, textView_5, textView_6, textView_7, textView_8,textView_9;
         public Button button;
         //  public RelativeLayout relativeLayout;
         public CardView cardView;
@@ -120,6 +123,7 @@ public class QuotationAdapter extends RecyclerView.Adapter<QuotationAdapter.Quot
             this.textView_7 = (TextView) itemView.findViewById(R.id.q_site_name);
             this.textView_8 = (TextView) itemView.findViewById(R.id.q_site_location);
             this.button = (Button) itemView.findViewById(R.id.fill_quotation_form);
+            this.textView_9 = (TextView) itemView.findViewById(R.id.text_pending);
 
             cardView = itemView.findViewById(R.id.quotation_list_card_view);
 
