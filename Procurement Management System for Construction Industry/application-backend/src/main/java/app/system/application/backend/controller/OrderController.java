@@ -99,7 +99,6 @@ public class OrderController {
 	@PutMapping("/v1/orders/status")
 	public  ResponseEntity<?> approveOrderStatus(@RequestParam("id") int id, @RequestParam("status") int status){
 		
-		System.out.println(status);
 
 		int result = orderService.approveOrderStatus(id,status);
 		

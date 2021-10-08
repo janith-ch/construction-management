@@ -84,7 +84,7 @@ public class OrderConstant {
 	
 	final String DELIVERY_STATUS_UPDATE =" update orders set delivery_status = ? where order_id = ? ";
 
-	final String APPROVE_ORDER = "update orders set is_approve_status = ?, quotation_status = 2 where order_id = ? ";
+	final String APPROVE_ORDER = "update orders set is_approve_status = ?, quotation_status = 3 where order_id = ? ";
 
 
 
