@@ -16,7 +16,7 @@ public class Delivery {
     private int siteId;
     private String note;
 
-    public String toString(){
+    public String toString() {
         return refId;
     }
 }

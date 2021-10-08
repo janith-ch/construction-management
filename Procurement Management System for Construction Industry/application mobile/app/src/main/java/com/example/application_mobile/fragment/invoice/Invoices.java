@@ -23,12 +23,12 @@ import com.android.volley.toolbox.Volley;
 import com.example.application_mobile.R;
 import com.example.application_mobile.adapter.InvoiceAdapter;
 import com.example.application_mobile.constant.Common;
+import com.example.application_mobile.constant.InvoiceConstant;
 import com.example.application_mobile.model.Invoice;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,9 +43,10 @@ public class Invoices extends Fragment {
     private RequestQueue requestQueue;
     private JsonObjectRequest jsonObjectRequest;
     private Common common = new Common();
+    private InvoiceConstant invoiceConstant = new InvoiceConstant();
 
     public Invoices() {
-
+    //default constructor
     }
 
     @Override
@@ -97,25 +98,31 @@ public class Invoices extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
 
-                        Log.e("Response is", response.toString());
+                        Log.i("Response {}", response.toString());
+
                         invoiceList.clear();
-                        JSONArray jsonArray = response.getJSONArray("dataBundle");
-                        for (int i = 0; i < jsonArray.length(); i++) {
+
+                        JSONArray jsonArray = response.getJSONArray(common.getJSON_PREFIX());
+
+                        for (int i = common.getZERO(); i < jsonArray.length(); i++) {
+
                             try {
+
                                 Invoice invoice = new Invoice();
                                 JSONObject obj = jsonArray.getJSONObject(i);
 
-                                invoice.setId(obj.getString("id"));
-                                invoice.setMaterial(obj.getString("materialName"));
-                                invoice.setOrderId(obj.getInt("orderId"));
-                                invoice.setQuantity(obj.getString("quantity"));
-                                invoice.setTotalPrice(obj.getString("total"));
-                                invoice.setSite(obj.getString("siteName"));
+                                invoice.setId(obj.getString(invoiceConstant.getID()));
+                                invoice.setMaterial(obj.getString(invoiceConstant.getMATERIAL_NAME()));
+                                invoice.setOrderId(obj.getInt(invoiceConstant.getORDER_ID()));
+                                invoice.setQuantity(obj.getString(invoiceConstant.getQUANTITY()));
+                                invoice.setTotalPrice(obj.getString(invoiceConstant.getTOTAL()));
+                                invoice.setSite(obj.getString(invoiceConstant.getSITE_NAME()));
 
 
                                 invoiceList.add(invoice);
 
                             } catch (JSONException e) {
+
                                 e.printStackTrace();
                             }
 
@@ -129,7 +136,8 @@ public class Invoices extends Fragment {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("Response", error.toString());
+
+                Log.e("Response {} ", error.toString());
             }
         }
 

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.application_mobile.R;
-import com.example.application_mobile.fragment.Home;
 import com.example.application_mobile.fragment.delivery.DeliveryList;
 import com.example.application_mobile.fragment.order.Orders;
 import com.example.application_mobile.fragment.invoice.Invoices;

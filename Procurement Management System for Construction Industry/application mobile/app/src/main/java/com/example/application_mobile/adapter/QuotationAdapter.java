@@ -1,7 +1,6 @@
 package com.example.application_mobile.adapter;
 
 import android.annotation.SuppressLint;
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,13 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.application_mobile.R;
+import com.example.application_mobile.constant.QuotationConstant;
 import com.example.application_mobile.fragment.quotation.CreateQuotations;
 import com.example.application_mobile.model.Quotation;
-import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
@@ -29,8 +27,9 @@ import java.util.List;
 public class QuotationAdapter extends RecyclerView.Adapter<QuotationAdapter.QuotationViewHolder> {
 
     private List<Quotation> listdata;
-    Button button;
+    private Button button;
     private Context context;
+    private QuotationConstant quotationConstant = new QuotationConstant();
 
     public QuotationAdapter(List<Quotation> listdata, Context context) {
         this.context = context;
@@ -55,11 +54,11 @@ public class QuotationAdapter extends RecyclerView.Adapter<QuotationAdapter.Quot
         final Quotation quotation = listdata.get(position);
 
         holder.textView_1.setText(listdata.get(position).getMaterialName());
-        holder.textView_2.setText(String.valueOf(listdata.get(position).getQuantity()).concat(" " + listdata.get(position).getQuantityType()));
+        holder.textView_2.setText(String.valueOf(listdata.get(position).getQuantity()).concat(quotationConstant.getSPACE().concat(listdata.get(position).getQuantityType())));
         holder.textView_3.setText(listdata.get(position).getToDate());
         holder.textView_4.setText(listdata.get(position).getFromDate());
         holder.textView_5.setText(listdata.get(position).getDepartmentStatus());
-        holder.textView_6.setText(String.valueOf("A00" + listdata.get(position).getSiteId()));
+        holder.textView_6.setText(String.valueOf(quotationConstant.getSTART()+listdata.get(position).getSiteId()));
         holder.textView_7.setText(listdata.get(position).getSiteName());
         holder.textView_8.setText(listdata.get(position).getSiteLocation());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +70,7 @@ public class QuotationAdapter extends RecyclerView.Adapter<QuotationAdapter.Quot
         });
 
         CreateQuotations createQuotations = new CreateQuotations();
-        if (String.valueOf(listdata.get(position).getQuotationStatus()).equals("2")) {
+        if (String.valueOf(listdata.get(position).getQuotationStatus()).equals(quotationConstant.getTWO())) {
             holder.button.setVisibility(View.GONE);
             holder.textView_9.setVisibility(View.VISIBLE);
         } else {
@@ -83,11 +82,11 @@ public class QuotationAdapter extends RecyclerView.Adapter<QuotationAdapter.Quot
 
                     Bundle bundle = new Bundle();
 
-                    bundle.putString("qcMaterial", listdata.get(position).getMaterialName());
-                    bundle.putString("qcMaterialType", listdata.get(position).getQuantityType());
-                    bundle.putString("qcFromDate", listdata.get(position).getFromDate());
-                    bundle.putString("qcToDate", listdata.get(position).getToDate());
-                    bundle.putInt("qcOrderId", listdata.get(position).getId());
+                    bundle.putString(quotationConstant.getMATERIAL_NAME(), listdata.get(position).getMaterialName());
+                    bundle.putString(quotationConstant.getQUANTITY_TYPE(), listdata.get(position).getQuantityType());
+                    bundle.putString(quotationConstant.getFROM_DATE(), listdata.get(position).getFromDate());
+                    bundle.putString(quotationConstant.getTo_DATE(), listdata.get(position).getToDate());
+                    bundle.putInt(quotationConstant.getORDER_ID(), listdata.get(position).getId());
 
                     createQuotations.setArguments(bundle);
 

@@ -1,8 +1,8 @@
 package com.example.application_mobile.fragment.invoice;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -22,9 +21,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.application_mobile.R;
 import com.example.application_mobile.constant.Common;
+import com.example.application_mobile.constant.InvoiceConstant;
 import com.example.application_mobile.fragment.delivery.DeliveryList;
 import com.example.application_mobile.model.Delivery;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,10 +35,11 @@ import lombok.SneakyThrows;
 public class CreateInvoice extends Fragment {
     private Spinner order_ref_dropdown;
     private Button createInvoice;
-    EditText delivered_quantity, feedback;
+    private EditText delivered_quantity;
     private RequestQueue requestQueue;
     private JsonObjectRequest jsonObjectRequest;
     private Common common = new Common();
+    private InvoiceConstant invoiceConstant = new InvoiceConstant();
     private String oderRef;
     private int siteId, materialId;
     private DeliveryList deliveryList_1 = new DeliveryList();
@@ -88,9 +88,9 @@ public class CreateInvoice extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
 
-                        Log.e("Response is", response.toString());
+                        Log.i("Response {} ", response.toString());
 
-                        JSONArray jsonArray = response.getJSONArray("dataBundle");
+                        JSONArray jsonArray = response.getJSONArray(common.getJSON_PREFIX());
 
                         for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -99,9 +99,9 @@ public class CreateInvoice extends Fragment {
                                 Delivery delivery = new Delivery();
                                 JSONObject obj = jsonArray.getJSONObject(i);
 
-                                delivery.setSiteId(obj.getInt("siteId"));
-                                delivery.setMaterialId(obj.getInt("materialId"));
-                                delivery.setRefId(obj.getString("id"));
+                                delivery.setSiteId(obj.getInt(invoiceConstant.getSITE_ID()));
+                                delivery.setMaterialId(obj.getInt(invoiceConstant.getMATERIAL_ID()));
+                                delivery.setRefId(obj.getString(invoiceConstant.getID()));
 
                                 deliveryList.add(delivery);
 
@@ -142,7 +142,7 @@ public class CreateInvoice extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Log.e("Response", error.toString());
+                Log.e("Response {} ", error.toString());
             }
         }
 
@@ -158,13 +158,13 @@ public class CreateInvoice extends Fragment {
 
         JSONObject jsonBody = new JSONObject();
 
-        jsonBody.put("siteId", siteId);
-        jsonBody.put("materialId", materialId);
-        jsonBody.put("quantity", delivered_quantity.getText().toString());
-        jsonBody.put("isApproved", 1);
-        jsonBody.put("orderId", Integer.parseInt(oderRef));
+        jsonBody.put(invoiceConstant.getSITE_ID(), siteId);
+        jsonBody.put(invoiceConstant.getMATERIAL_ID(), materialId);
+        jsonBody.put(invoiceConstant.getQUANTITY(), delivered_quantity.getText().toString());
+        jsonBody.put(invoiceConstant.getIS_APPROVED(), common.getONE());
+        jsonBody.put(invoiceConstant.getORDER_ID(), Integer.parseInt(oderRef));
 
-       Log.i("Invoice json body {} ",jsonBody.toString());
+        Log.i("Invoice json body {} ", jsonBody.toString());
 
         jsonObjectRequest = new JsonObjectRequest(
 
@@ -180,7 +180,7 @@ public class CreateInvoice extends Fragment {
 
                         Log.e("Response is", response.toString());
 
-                        if (response.getBoolean("isSuccess")) {
+                        if (response.getBoolean(common.getIS_SUCCESS())) {
 
                             Toast.makeText(getContext(), "Invoice Created", Toast.LENGTH_LONG).show();
 
@@ -198,7 +198,7 @@ public class CreateInvoice extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Log.e("Response", error.toString());
+                Log.e("Response {} ", error.toString());
 
             }
         }
