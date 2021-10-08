@@ -177,7 +177,7 @@ public class QuotationService implements QuotationInterface {
 			if(status == 1 ) {
 
 
-				orderDto.setQuotationStatus(3);
+				orderDto.setQuotationStatus(1);
 
 				int updateOrderResult = orderRepository.update(orderDto, orderId);
 
