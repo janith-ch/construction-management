@@ -18,9 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.application_mobile.R;
-import com.example.application_mobile.fragment.order.CreateOrderStepTwo;
-import com.example.application_mobile.fragment.order.OrderSummary;
-
+import com.example.application_mobile.constant.QuotationConstant;
 
 public class CreateQuotations extends Fragment {
 
@@ -29,6 +27,7 @@ public class CreateQuotations extends Fragment {
     private TextView qc_sum_material,qc_sum_material_type,qc_sum_from_date,qc_sum_to_date;
     private int day, month, year;
     private Button button;
+    private QuotationConstant quotationConstant = new QuotationConstant();
 
     public CreateQuotations() {
         // Required empty public constructor
@@ -56,10 +55,10 @@ public class CreateQuotations extends Fragment {
 
         //set data to data-bundle
         Bundle bundle = getArguments();
-        qc_sum_material.setText(bundle.getString("qcMaterial"));
-        qc_sum_material_type.setText(bundle.getString("qcMaterialType"));
-        qc_sum_from_date.setText(bundle.getString("qcFromDate"));
-        qc_sum_to_date.setText(bundle.getString("qcToDate"));
+        qc_sum_material.setText(bundle.getString(quotationConstant.getMATERIAL_NAME()));
+        qc_sum_material_type.setText(bundle.getString(quotationConstant.getQUANTITY_TYPE()));
+        qc_sum_from_date.setText(bundle.getString(quotationConstant.getFROM_DATE()));
+        qc_sum_to_date.setText(bundle.getString(quotationConstant.getTo_DATE()));
 
         //get ongoing date
         day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -81,12 +80,11 @@ public class CreateQuotations extends Fragment {
                 //bind values to data bundle
                 Bundle bundle = getArguments();
 
-                bundle.putString("estimatedFromDate", from_date.getText().toString());
-                bundle.putString("estimatedToDate", to_date.getText().toString());
-                bundle.putString("estimatedUnitCost", estimated_unit_cost.getText().toString());
-                bundle.putString("estimatedQuantity", estimated_quantity.getText().toString());
+                bundle.putString(quotationConstant.getESTIMATED_FROM_DATE(), from_date.getText().toString());
+                bundle.putString(quotationConstant.getESTIMATED_TO_DATE(), to_date.getText().toString());
+                bundle.putString(quotationConstant.getESTIMATED_UNIT_COST(), estimated_unit_cost.getText().toString());
+                bundle.putString(quotationConstant.getESTIMATED_QUANTITY(), estimated_quantity.getText().toString());
 
-                System.out.println("====================>"+bundle);
                 quotationSummary.setArguments(bundle);
 
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, quotationSummary).commit();

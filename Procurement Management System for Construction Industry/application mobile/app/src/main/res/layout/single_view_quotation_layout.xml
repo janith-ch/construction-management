@@ -7,10 +7,10 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="20dp"
     android:layout_marginVertical="10dp"
+    android:background="@drawable/text_view_yellow_coner"
     android:elevation="6dp"
-    app:cardCornerRadius="10dp"
 
-    >
+    app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -66,6 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/space"
+            android:textColor="#050505"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.178"
             app:layout_constraintStart_toStartOf="@+id/textView8"
@@ -102,6 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/space"
+            android:textColor="#040404"
             app:layout_constraintEnd_toEndOf="@+id/textView26"
             app:layout_constraintHorizontal_bias="0.808"
             app:layout_constraintStart_toStartOf="@+id/textView26"
@@ -125,6 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/dep_status"
+            android:textColor="#070707"
             app:layout_constraintEnd_toEndOf="@+id/textView26"
             app:layout_constraintHorizontal_bias="0.557"
             app:layout_constraintStart_toStartOf="@+id/q_to_date"
@@ -161,6 +164,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/site_code"
+            android:textColor="#0B0B0B"
             app:layout_constraintEnd_toEndOf="@+id/textView31"
             app:layout_constraintHorizontal_bias="0.413"
             app:layout_constraintStart_toStartOf="@+id/textView31"
@@ -172,6 +176,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/site_name"
+            android:textColor="#090909"
             app:layout_constraintEnd_toEndOf="@+id/textView32"
             app:layout_constraintStart_toStartOf="@+id/textView32"
             app:layout_constraintTop_toBottomOf="@+id/textView32" />
@@ -182,6 +187,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/site_location_name"
+            android:textColor="#0E0E0E"
             app:layout_constraintEnd_toEndOf="@+id/textView33"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/textView33"
@@ -235,6 +241,20 @@
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <TextView
+            android:id="@+id/text_pending"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/text_view_green_coner"
+            android:text="@string/pending"
+            android:textColor="#090909"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:layout_constraintVertical_bias="0.878" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

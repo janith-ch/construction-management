@@ -52,12 +52,12 @@ export const ROUTES: RouteInfo[] = [
 
   {
     path: '/quotation',
-    title: 'Orders & Quotations',
+    title: 'Quotations',
     type: 'sub',
     icontype: 'description',
     collapse: 'quotation',
     children: [
-      { path: 'summary', title: 'View All Orders', ab: 'VAO', active: true },
+      { path: 'summary', title: 'View All Orders', ab: 'VAO', active: false },
       {
         path: 'get-all-quotations',
         title: 'View All Quotations',

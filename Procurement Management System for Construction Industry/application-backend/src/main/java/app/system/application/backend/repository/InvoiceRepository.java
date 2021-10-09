@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -23,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 public class InvoiceRepository {
 	
 	@Autowired
+	@Qualifier("system-jdbc-template")
 	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
@@ -86,6 +88,8 @@ public class InvoiceRepository {
 				rs.getString("site_name"),
 				rs.getString("matrial_name"),
 				rs.getString("supplier_name"),
+				rs.getString("unit_type"),
+				rs.getString("address"),
 				rs.getInt("material_id"),
 				rs.getDouble("qunatity"),
 				rs.getDouble("total"),
@@ -106,6 +110,8 @@ public class InvoiceRepository {
 				rs.getString("site_name"),
 				rs.getString("matrial_name"),
 				rs.getString("supplier_name"),
+				rs.getString("unit_type"),
+				rs.getString("address"),
 				rs.getInt("material_id"),
 				rs.getDouble("qunatity"),
 				rs.getDouble("total"),

@@ -21,7 +21,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.application_mobile.R;
 import com.example.application_mobile.constant.Common;
-import com.example.application_mobile.fragment.order.Orders;
+import com.example.application_mobile.constant.DeliveryConstant;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,16 +31,17 @@ import lombok.SneakyThrows;
 
 public class CreateDelivery extends Fragment {
 
-    TextView materialName, quantity, toDate, fromDate, purchaseRef, siteName, siteLocation, manager;
-    EditText personName, personNo, vehicleNo, deliveryNote;
-    Button createDelivery;
-    Common common = new Common();
-    DeliveryList deliveryList = new DeliveryList();
+    private TextView materialName, quantity, toDate, fromDate, purchaseRef, siteName, siteLocation, manager;
+    private EditText personName, personNo, vehicleNo, deliveryNote;
+    private Button createDelivery;
+    private Common common = new Common();
+    private DeliveryList deliveryList = new DeliveryList();
+    private DeliveryConstant deliveryConstant = new DeliveryConstant();
     private JsonObjectRequest jsonObjectRequest;
     private RequestQueue requestQueue;
 
     public CreateDelivery() {
-        // Required empty public constructor
+        // default constructor
     }
 
 
@@ -66,14 +67,14 @@ public class CreateDelivery extends Fragment {
 
 
         Bundle bundle = getArguments();
-        materialName.setText(bundle.getString("MaterialName"));
-        quantity.setText(bundle.getString("quantity").concat(" " + bundle.getString("quantityType")));
-        toDate.setText(bundle.getString("toDate"));
-        fromDate.setText(bundle.getString("fromDate"));
-        purchaseRef.setText(bundle.getString("purId"));
-        siteName.setText(bundle.getString("siteName"));
-        siteLocation.setText(bundle.getString("siteAddress"));
-        manager.setText("Mr.".concat(bundle.getString("siteManagerName")));
+        materialName.setText(bundle.getString(deliveryConstant.getMATERIAL_NAME()));
+        quantity.setText(bundle.getString(deliveryConstant.getQUANTITY()).concat(" " + bundle.getString(deliveryConstant.getQUANTITY_TYPE())));
+        toDate.setText(bundle.getString(deliveryConstant.getTo_DATE()));
+        fromDate.setText(bundle.getString(deliveryConstant.getFROM_DATE()));
+        purchaseRef.setText(bundle.getString(deliveryConstant.getPUR_ID()));
+        siteName.setText(bundle.getString(deliveryConstant.getSITE_NAME()));
+        siteLocation.setText(bundle.getString(deliveryConstant.getSITE_ADDRESS()));
+        manager.setText(deliveryConstant.getMR().concat(bundle.getString(deliveryConstant.getSITE_MANAGER_NAME())));
 
         createDelivery.setOnClickListener(new View.OnClickListener() {
             @SneakyThrows
@@ -94,12 +95,12 @@ public class CreateDelivery extends Fragment {
 
         JSONObject jsonBody = new JSONObject();
 
-        jsonBody.put("orderId", bundle.getString("purId"));
-        jsonBody.put("driverName", personName.getText().toString());
-        jsonBody.put("vehicleNo", vehicleNo.getText().toString());
-        jsonBody.put("contactNumber", personNo.getText().toString());
-        jsonBody.put("estimatedDeliveryDateTime",bundle.getString("fromDate"));
-        jsonBody.put("note", deliveryNote.getText().toString());
+        jsonBody.put(deliveryConstant.getORDER_ID(), bundle.getString(deliveryConstant.getPUR_ID()));
+        jsonBody.put(deliveryConstant.getDRIVER_NAME(), personName.getText().toString());
+        jsonBody.put(deliveryConstant.getVEHICLE_NO(), vehicleNo.getText().toString());
+        jsonBody.put(deliveryConstant.getCONTACT_NO(), personNo.getText().toString());
+        jsonBody.put(deliveryConstant.getESTIMATED_DELIVERY_DATE_TIME(), bundle.getString(deliveryConstant.getFROM_DATE()));
+        jsonBody.put(deliveryConstant.getNOTE(), deliveryNote.getText().toString());
 
         jsonObjectRequest = new JsonObjectRequest(
 
@@ -113,9 +114,9 @@ public class CreateDelivery extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
 
-                        Log.e("Response is", response.toString());
+                        Log.i("Response {} ", response.toString());
 
-                        if (response.getBoolean("isSuccess")) {
+                        if (response.getBoolean(common.getIS_SUCCESS())) {
 
                             Toast.makeText(getContext(), "Delivery Created", Toast.LENGTH_LONG).show();
 

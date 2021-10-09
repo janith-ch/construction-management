@@ -32,13 +32,13 @@ public class InvoiceConstant {
 			+ " where id = ?";
 	
 	
-	final String FIND_ALL = "select i.*,m.name as matrial_name, s.name as site_name,u.first_name as supplier_name "
+	final String FIND_ALL = "select i.*,m.name as matrial_name, m.unit_type, s.address, s.name as site_name,u.first_name as supplier_name "
 			+ " from invoices i left join material m on i.material_id = m.id "
 			+ "left join user u on u.id = m.supplier_id "
 			+ "left join site s on i.site_code = s.id;";
 	
 	
-	final String FIND_BY_ID = "select i.*,m.name as matrial_name, s.name as site_name,u.first_name as supplier_name  "
+	final String FIND_BY_ID = "select i.*,m.name as matrial_name, m.unit_type, s.address, s.name as site_name,u.first_name as supplier_name  "
 			+ "from invoices i left join material m on i.material_id = m.id"
 			+ " left join user u on u.id = m.supplier_id "
 			+ "left join site s on i.site_code = s.id where i.id = ?;";

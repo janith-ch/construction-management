@@ -49,6 +49,7 @@ export class GetAllInvoicesComponent implements OnInit {
 
   getData() {
     this.invoiceservice.getAllInvoices().subscribe((data) => {
+      this.initializeDataTable();
       this.dataTable.dataRows = data.dataBundle;
     });
   }

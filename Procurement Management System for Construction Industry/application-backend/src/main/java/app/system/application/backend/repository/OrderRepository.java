@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -18,12 +19,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Repository
 @Transactional
+@Qualifier("system-transaction-manager")
 public class OrderRepository {
 
     @Autowired
     OrderConstant orderConstant;
 
     @Autowired
+	@Qualifier("system-jdbc-template")
     private JdbcTemplate jdbcTemplate;
 
 	public int save(OrderDto orderDto) {

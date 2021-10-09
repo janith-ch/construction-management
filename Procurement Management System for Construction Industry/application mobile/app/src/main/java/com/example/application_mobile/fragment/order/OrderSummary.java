@@ -21,6 +21,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.application_mobile.R;
 import com.example.application_mobile.constant.Common;
+import com.example.application_mobile.constant.OrderConstant;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,12 +34,13 @@ public class OrderSummary extends Fragment {
     Button confirm,cancel;
     Common common = new Common();
     Orders orders = new Orders();
+    private OrderConstant orderConstant = new OrderConstant();
     private JsonObjectRequest jsonObjectRequest;
 
     private RequestQueue requestQueue;
 
     public OrderSummary() {
-        // Required empty public constructor
+        // default constructor
     }
 
     @Override
@@ -72,19 +74,19 @@ public class OrderSummary extends Fragment {
 
         //set values to summary
         Bundle bundle = getArguments();
-        material.setText(bundle.getString("material"));
-        quantity.setText(bundle.getString("quantity"));
-        dateFrom.setText(bundle.getString("fromDate"));
-        dateTo.setText(bundle.getString("toDate"));
-        siteName.setText(bundle.getString("site"));
-        location.setText(bundle.getString("location"));
-        String x = String.valueOf(bundle.getInt("siteId"));
+        material.setText(bundle.getString(orderConstant.getMATERIAL_NAME()));
+        quantity.setText(bundle.getString(orderConstant.getQUANTITY()));
+        dateFrom.setText(bundle.getString(orderConstant.getFROM_DATE()));
+        dateTo.setText(bundle.getString(orderConstant.getTo_DATE()));
+        siteName.setText(bundle.getString(orderConstant.getSITE()));
+        location.setText(bundle.getString(orderConstant.getLOCATION()));
+        String x = String.valueOf(bundle.getInt(orderConstant.getSITE_ID()));
         siteCode.setText("A000".concat(x));
 
-        int qun = Integer.parseInt(bundle.getString("quantity"));
-        Double uCost = bundle.getDouble("unitCost");
+        int qun = Integer.parseInt(bundle.getString(orderConstant.getQUANTITY()));
+        Double uCost = bundle.getDouble(orderConstant.getUNIT_COST());
 
-        String totCost = "RS.".concat(String.valueOf(qun * uCost));
+        String totCost = common.getRS().concat(String.valueOf(qun * uCost));
         totalCost.setText(totCost);
 
         confirm.setOnClickListener(new View.OnClickListener() {
@@ -115,11 +117,11 @@ public class OrderSummary extends Fragment {
 
         JSONObject jsonBody = new JSONObject();
 
-        jsonBody.put("materialId", bundle.getInt("materialId"));
-        jsonBody.put("quantity", Double.parseDouble(bundle.getString("quantity")));
-        jsonBody.put("orderDate", bundle.getString("fromDate"));
-        jsonBody.put("deliveryDate", bundle.getString("toDate"));
-        jsonBody.put("siteId", bundle.getInt("siteId"));
+        jsonBody.put(orderConstant.getMATERIAL_ID(), bundle.getInt(orderConstant.getMATERIAL_ID()));
+        jsonBody.put(orderConstant.getQUANTITY(), Double.parseDouble(bundle.getString(orderConstant.getQUANTITY())));
+        jsonBody.put(orderConstant.getORDER_DATE(), bundle.getString(orderConstant.getFROM_DATE()));
+        jsonBody.put(orderConstant.getDELIVERY_DATE(), bundle.getString(orderConstant.getTo_DATE()));
+        jsonBody.put(orderConstant.getSITE_ID(), bundle.getInt(orderConstant.getSITE_ID()));
 
         jsonObjectRequest = new JsonObjectRequest(
 
@@ -133,9 +135,9 @@ public class OrderSummary extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
 
-                        Log.e("Response is", response.toString());
+                        Log.i("Response is", response.toString());
 
-                        if (response.getBoolean("isSuccess")) {
+                        if (response.getBoolean(common.getIS_SUCCESS())) {
 
                             Toast.makeText(getContext(), "Order Created", Toast.LENGTH_LONG).show();
 

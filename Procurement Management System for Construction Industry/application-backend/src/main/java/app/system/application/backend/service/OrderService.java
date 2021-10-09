@@ -1,4 +1,5 @@
 package app.system.application.backend.service;
+import app.system.application.backend.constant.AmountEnum;
 import app.system.application.backend.constant.DeliveryEnum;
 import app.system.application.backend.model.dto.OrderDto;
 import app.system.application.backend.model.dto.StockPriceDto;
@@ -28,7 +29,7 @@ public class OrderService implements OrderInt {
 	public int createOrder(OrderDto orderDto) {	
     	String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date()); 
     	
-      double limitValue = 100000;
+      double limitValue = AmountEnum.ORDERLIMIT.getLimit();
     	
       double quantity = orderDto.getQuantity();
       
@@ -49,10 +50,13 @@ public class OrderService implements OrderInt {
       if (totalCost >= limitValue) {
     	  
     	  orderDto.setIsApprove(2);
+    	  orderDto.setQuotationStatus(0);
+    	  
     	  
       }else {
     	  
     	  orderDto.setIsApprove(1);
+    	  orderDto.setQuotationStatus(1);
       }
       
      return orderRepository.save(orderDto);
@@ -62,7 +66,7 @@ public class OrderService implements OrderInt {
 	@Override
 	public int update(OrderDto orderDto, int id) {
 		  
-		  double limitValue = 100000;
+		  double limitValue = AmountEnum.ORDERLIMIT.getLimit();
     	
 	      double quantity = orderDto.getQuantity();
 	    	
@@ -77,10 +81,12 @@ public class OrderService implements OrderInt {
 	      if (totalCost >= limitValue) {
 	    	  
 	    	  orderDto.setIsApprove(0);
+	    	  orderDto.setQuotationStatus(0);
 	    	  
 	      }else {
 	    	  
 	    	  orderDto.setIsApprove(1);
+	    	  orderDto.setQuotationStatus(1);
 	      }
 		 return orderRepository.update(orderDto,id);
 	}
@@ -109,6 +115,7 @@ public class OrderService implements OrderInt {
 
 	public int approveOrderStatus(int orderId, int status) {
 			
+	
 		
 		return orderRepository.approveOrderStatus(status,orderId);
 	}
