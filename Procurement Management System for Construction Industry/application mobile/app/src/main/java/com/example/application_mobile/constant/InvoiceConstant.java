@@ -41,4 +41,5 @@ public class InvoiceConstant {
     private String START = "QO0";
     private String SPACE = " ";
     private String MR = "Mr.";
+    private String SUPPLIER_NAME = "supplierName";
 }

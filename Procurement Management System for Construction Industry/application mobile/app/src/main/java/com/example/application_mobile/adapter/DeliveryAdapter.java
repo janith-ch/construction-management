@@ -49,6 +49,7 @@ public class DeliveryAdapter extends RecyclerView.Adapter<DeliveryAdapter.Delive
         holder.textView_2.setText(listdata.get(position).getDriverName());
         holder.textView_3.setText(listdata.get(position).getContactNumber());
         holder.textView_4.setText(listdata.get(position).getDeliveryStatus());
+        holder.textView_5.setText(String.valueOf(listdata.get(position).getVehicleNo()));
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +67,7 @@ public class DeliveryAdapter extends RecyclerView.Adapter<DeliveryAdapter.Delive
 
     public static class DeliveryViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textView_1, textView_2, textView_3, textView_4;
+        public TextView textView_1, textView_2, textView_3, textView_4,textView_5;
         public Button button;
         public CardView cardView;
 
@@ -77,6 +78,7 @@ public class DeliveryAdapter extends RecyclerView.Adapter<DeliveryAdapter.Delive
             this.textView_2 = (TextView) itemView.findViewById(R.id.delivery_material);
             this.textView_3 = (TextView) itemView.findViewById(R.id.delivery_quantity);
             this.textView_4 = (TextView) itemView.findViewById(R.id.delivery_status);
+            this.textView_5 = (TextView) itemView.findViewById(R.id.text_vehicle_no);
 
             cardView = itemView.findViewById(R.id.delivery_list_card_view);
 

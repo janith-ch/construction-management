@@ -82,6 +82,7 @@
             android:text="@string/por"
             android:textColor="#090909"
             app:layout_constraintEnd_toEndOf="@+id/textView21"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/textView21"
             app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
@@ -134,7 +135,7 @@
             android:text="@string/location"
             android:textColor="#040404"
             app:layout_constraintEnd_toEndOf="@+id/textView36"
-            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/textView36"
             app:layout_constraintTop_toBottomOf="@+id/textView36" />
 
@@ -143,7 +144,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="TextView"
+            android:text="@string/space"
             app:layout_constraintEnd_toEndOf="@+id/i_por"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/i_por"
@@ -154,7 +155,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="COLOMBO_07"
+            android:text="@string/space"
             app:layout_constraintEnd_toEndOf="@+id/i_site"
             app:layout_constraintStart_toStartOf="@+id/i_site"
             app:layout_constraintTop_toBottomOf="@+id/i_site" />
@@ -166,6 +167,7 @@
             android:layout_marginTop="24dp"
             android:text="@string/space"
             app:layout_constraintEnd_toEndOf="@+id/textView37"
+            app:layout_constraintHorizontal_bias="0.062"
             app:layout_constraintStart_toStartOf="@+id/textView37"
             app:layout_constraintTop_toBottomOf="@+id/textView37" />
 
@@ -174,9 +176,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/createdDate"
+            android:text="Supplier"
             android:textColor="#090909"
             app:layout_constraintEnd_toEndOf="@+id/i_material"
+            app:layout_constraintHorizontal_bias="0.076"
             app:layout_constraintStart_toStartOf="@+id/i_material"
             app:layout_constraintTop_toBottomOf="@+id/i_material" />
 
@@ -185,7 +188,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="TextView"
+            android:text="@string/space"
             app:layout_constraintEnd_toEndOf="@+id/i_location"
             app:layout_constraintStart_toStartOf="@+id/i_location"
             app:layout_constraintTop_toBottomOf="@+id/i_location" />
@@ -195,7 +198,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/date"
+            android:text="@string/space"
             app:layout_constraintEnd_toEndOf="@+id/i_qunntity"
             app:layout_constraintStart_toStartOf="@+id/i_qunntity"
             app:layout_constraintTop_toBottomOf="@+id/i_qunntity" />

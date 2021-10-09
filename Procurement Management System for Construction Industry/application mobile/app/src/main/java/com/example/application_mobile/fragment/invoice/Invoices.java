@@ -117,6 +117,10 @@ public class Invoices extends Fragment {
                                 invoice.setQuantity(obj.getString(invoiceConstant.getQUANTITY()));
                                 invoice.setTotalPrice(obj.getString(invoiceConstant.getTOTAL()));
                                 invoice.setSite(obj.getString(invoiceConstant.getSITE_NAME()));
+                                invoice.setLocation(obj.getString(invoiceConstant.getADDRESS()));
+                                invoice.setMaterial(obj.getString(invoiceConstant.getMATERIAL_NAME()));
+                                invoice.setQuantityType(obj.getString(invoiceConstant.getUNIT_TYPE()));
+                                invoice.setCreatedDate(obj.getString(invoiceConstant.getSUPPLIER_NAME()));
 
 
                                 invoiceList.add(invoice);

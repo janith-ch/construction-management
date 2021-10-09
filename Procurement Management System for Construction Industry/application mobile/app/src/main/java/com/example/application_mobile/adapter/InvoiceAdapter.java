@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.application_mobile.R;
 import com.example.application_mobile.constant.Common;
+import com.example.application_mobile.constant.InvoiceConstant;
 import com.example.application_mobile.model.Invoice;
 import com.example.application_mobile.model.Order;
 
@@ -26,6 +27,7 @@ public class InvoiceAdapter extends RecyclerView.Adapter<InvoiceAdapter.InvoiceV
     private List<Invoice> listdata;
     private Context context;
     private Common common = new Common();
+    private InvoiceConstant invoiceConstant = new InvoiceConstant();
 
     public InvoiceAdapter(List<Invoice> listdata, Context context) {
         this.context = context;
@@ -53,7 +55,7 @@ public class InvoiceAdapter extends RecyclerView.Adapter<InvoiceAdapter.InvoiceV
         holder.textView_3.setText(listdata.get(position).getSite());
         holder.textView_4.setText(listdata.get(position).getLocation());
         holder.textView_5.setText(listdata.get(position).getMaterial());
-        holder.textView_6.setText(String.valueOf(listdata.get(position).getQuantity()));
+        holder.textView_6.setText(String.valueOf(listdata.get(position).getQuantity()).concat(invoiceConstant.getSPACE().concat(listdata.get(position).getQuantityType())));
         holder.textView_7.setText(listdata.get(position).getCreatedDate());
         holder.textView_8.setText(common.getRS().concat(listdata.get(position).getTotalPrice()).concat(common.getPOINTS()));
         holder.cardView.setOnClickListener(new View.OnClickListener() {
