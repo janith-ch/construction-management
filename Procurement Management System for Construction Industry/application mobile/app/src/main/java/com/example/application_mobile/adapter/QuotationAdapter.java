@@ -75,6 +75,7 @@ public class QuotationAdapter extends RecyclerView.Adapter<QuotationAdapter.Quot
             holder.textView_9.setVisibility(View.VISIBLE);
         } else {
             holder.textView_9.setVisibility(View.GONE);
+            holder.button.setVisibility(View.VISIBLE);
             holder.button.setOnClickListener(new View.OnClickListener() {
 
                 @Override

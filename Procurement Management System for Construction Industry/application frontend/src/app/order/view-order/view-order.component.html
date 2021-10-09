@@ -51,7 +51,14 @@
                                                 *ngIf="(row.isApprove == 1||row.isApprove ==3)">APPROVED</span>
                                             <span class="badge badge-danger" *ngIf="row.isApprove == 0">REJECTED</span>
                                         </td>
-                                        <td>{{row.deliveryStatus}}</td>
+                                        <td>
+                                            <span class="badge badge-warning"
+                                                *ngIf="row.deliveryStatus == 'PENDING'">PENDING</span>
+                                            <span class="badge badge-success"
+                                                *ngIf="(row.deliveryStatus == 'DELIVERED')">DELIVERED</span>
+                                            <span class="badge badge-primary"
+                                                *ngIf="row.deliveryStatus == 'DELIVERING'">DELIVERING</span>
+                                        </td>
 
                                         <td class="text-center">
                                             <a class="btn btn-link btn-success btn-just-icon edit"><i

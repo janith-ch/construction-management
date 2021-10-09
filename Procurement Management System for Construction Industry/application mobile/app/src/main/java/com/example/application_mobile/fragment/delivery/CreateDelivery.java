@@ -22,7 +22,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.application_mobile.R;
 import com.example.application_mobile.constant.Common;
 import com.example.application_mobile.constant.DeliveryConstant;
-import com.example.application_mobile.fragment.order.Orders;
 
 import org.json.JSONException;
 import org.json.JSONObject;

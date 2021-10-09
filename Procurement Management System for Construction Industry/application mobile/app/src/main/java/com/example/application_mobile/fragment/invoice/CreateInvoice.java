@@ -169,7 +169,7 @@ public class CreateInvoice extends Fragment {
         jsonObjectRequest = new JsonObjectRequest(
 
                 Request.Method.POST,
-                common.getURL().concat(common.getCREATE_QUOTATION_ENDPOINT()),
+                common.getURL().concat(common.getCREATE_INVOICE_ENDPOINT()),
                 jsonBody,
 
                 new Response.Listener<JSONObject>() {

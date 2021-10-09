@@ -31,6 +31,7 @@ export class GetAllQuotationComponent implements OnInit {
 
   getData() {
     this.quotationservice.getQuotations().subscribe((data) => {
+      this.initializeDataTable();
       this.dataTable.dataRows = data.dataBundle;
     });
   }

@@ -10,6 +10,7 @@ public class Common {
     private  String CREATE_ORDER_ENDPOINT = "orders";
     private  String ORDER_LIST_ENDPOINT = "orders";
     private  String CREATE_QUOTATION_ENDPOINT= "quotations";
+    private  String CREATE_INVOICE_ENDPOINT = "invoices";
     private  String RECEIVE_ODER_ENDPOINT = "delivery-notes/received/orders";
     private  String CREATE_DELIVERY_ENDPOINT = "delivery-notes";
     private  String DELIVERY_LIST_ENDPOINT = "delivery-notes";
