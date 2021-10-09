@@ -1,5 +1,6 @@
 package com.example.application_mobile.fragment.delivery;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,14 +23,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.application_mobile.R;
 import com.example.application_mobile.adapter.DeliveryAdapter;
-import com.example.application_mobile.adapter.OrderAdapter;
-import com.example.application_mobile.adapter.QuotationAdapter;
 import com.example.application_mobile.constant.Common;
-import com.example.application_mobile.fragment.order.CreateOrderStepOne;
+import com.example.application_mobile.constant.DeliveryConstant;
 import com.example.application_mobile.fragment.order.ReceiveOrders;
 import com.example.application_mobile.model.Delivery;
-import com.example.application_mobile.model.Order;
-import com.example.application_mobile.model.Quotation;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,11 +42,12 @@ public class DeliveryList extends Fragment {
 
     private List<Delivery> deliveryList = new ArrayList<>();
     private Common common = new Common();
+    private DeliveryConstant deliveryConstant = new DeliveryConstant();
     private RecyclerView recyclerView;
     private DeliveryAdapter deliveryAdapter;
     private RequestQueue requestQueue;
     private JsonObjectRequest jsonObjectRequest;
-    Button button;
+    private Button button;
 
 
     public DeliveryList() {
@@ -67,15 +65,10 @@ public class DeliveryList extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-//        quotations.add(new Quotation("CEMENT","100Pack","2020/10/10","2020/10/10","Pending","A001","Colombo","Colombo3"));
-//        quotations.add(new Quotation("CEMENT","100Pack","2020/10/10","2020/10/10","Pending","A001","Colombo","Colombo3"));
-//        quotations.add(new Quotation("CEMENT","100Pack","2020/10/10","2020/10/10","Pending","A001","Colombo","Colombo3"));
-
-
         View view = inflater.inflate(R.layout.fragment_delivery_list, container, false);
         recyclerView = view.findViewById(R.id.delivery_recycle_view);
-        button =view.findViewById(R.id.receive_delivery_create);
-        deliveryAdapter =  new DeliveryAdapter(deliveryList,getContext());
+        button = view.findViewById(R.id.receive_delivery_create);
+        deliveryAdapter = new DeliveryAdapter(deliveryList, getContext());
 
 
         recyclerView.setHasFixedSize(true);
@@ -87,7 +80,8 @@ public class DeliveryList extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, receiveOrders).commit();            }
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, receiveOrders).commit();
+            }
         });
 
         return view;
@@ -99,38 +93,49 @@ public class DeliveryList extends Fragment {
         requestQueue = Volley.newRequestQueue(getContext());
 
         jsonObjectRequest = new JsonObjectRequest(
+
                 Request.Method.GET,
                 common.getURL().concat(common.getDELIVERY_LIST_ENDPOINT()),
                 null,
+
                 new Response.Listener<JSONObject>() {
+
+                    @SuppressLint("LongLogTag")
                     @SneakyThrows
                     @Override
                     public void onResponse(JSONObject response) {
 
-                        Log.e("Response is", response.toString());
+                        Log.i("Response {}", response.toString());
+
                         deliveryList.clear();
-                        JSONArray jsonArray = response.getJSONArray("dataBundle");
+
+                        JSONArray jsonArray = response.getJSONArray(common.getJSON_PREFIX());
+
                         for (int i = 0; i < jsonArray.length(); i++) {
+
                             try {
-                               Delivery delivery = new Delivery();
+
+                                Delivery delivery = new Delivery();
                                 JSONObject obj = jsonArray.getJSONObject(i);
 
-                                delivery.setId(obj.getInt("id"));
-                                delivery.setOrderId(obj.getInt("orderId"));
-                                delivery.setDeliveryStatus(obj.getString("deliveryStatus"));
-                                delivery.setDriverName(obj.getString("driverName"));
-                                delivery.setVehicleNo(obj.getString("vehicleNo"));
-                                delivery.setContactNumber(obj.getString("contactNumber"));
-                                delivery.setEstimatedDeliveryDateTime(obj.getString("estimatedDeliveryDateTime"));
-                                delivery.setNote(obj.getString("note"));
+                                delivery.setId(obj.getInt(deliveryConstant.getORDER_ID()));
+                                delivery.setOrderId(obj.getInt(deliveryConstant.getORDER_ID()));
+                                delivery.setDeliveryStatus(obj.getString(deliveryConstant.getDELIVERY_STATUS()));
+                                delivery.setDriverName(obj.getString(deliveryConstant.getDRIVER_NAME()));
+                                delivery.setVehicleNo(obj.getString(deliveryConstant.getVEHICLE_NO()));
+                                delivery.setContactNumber(obj.getString(deliveryConstant.getCONTACT_NO()));
+                                delivery.setEstimatedDeliveryDateTime(obj.getString(deliveryConstant.getESTIMATED_DELIVERY_DATE_TIME()));
+                                delivery.setNote(obj.getString(deliveryConstant.getNOTE()));
 
                                 deliveryList.add(delivery);
+
                             } catch (JSONException e) {
+
                                 e.printStackTrace();
                             }
 
                         }
-                        System.out.println("=================>"+deliveryList);
+                        Log.i("filtered deliveryList response {}", deliveryList.toString());
 
                         deliveryAdapter.notifyDataSetChanged();
                         return;

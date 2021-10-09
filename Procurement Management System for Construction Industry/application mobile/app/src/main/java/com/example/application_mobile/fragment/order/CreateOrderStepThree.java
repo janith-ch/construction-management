@@ -15,17 +15,20 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.example.application_mobile.R;
+import com.example.application_mobile.constant.Common;
+import com.example.application_mobile.constant.OrderConstant;
 import com.kofigyan.stateprogressbar.StateProgressBar;
 
 
 public class CreateOrderStepThree extends Fragment {
 
-    private String[] descriptionData = {"Select Project", "Select Material", "Select Deadline"};
     private StateProgressBar stateProgressBar;
     private Button button;
     private java.util.Calendar calendar = java.util.Calendar.getInstance();
     private EditText from_date, to_date;
     private int day, month, year;
+    private Common common = new Common();
+    private OrderConstant orderConstant = new OrderConstant();
 
     public CreateOrderStepThree() {
 
@@ -38,7 +41,7 @@ public class CreateOrderStepThree extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create_order_step_three, container, false);
         stateProgressBar = view.findViewById(R.id.your_state_progress_bar_three);
-        stateProgressBar.setStateDescriptionData(descriptionData);
+        stateProgressBar.setStateDescriptionData(orderConstant.getDescriptionData());
         button = view.findViewById(R.id.button_create_final);
 
         from_date = (EditText) view.findViewById(R.id.co_frome_date);
@@ -62,8 +65,8 @@ public class CreateOrderStepThree extends Fragment {
                 //bind values to data bundle
                 Bundle bundle = getArguments();
 
-                bundle.putString("fromDate", String.valueOf(from_date.getText()));
-                bundle.putString("toDate", String.valueOf(to_date.getText()));
+                bundle.putString(orderConstant.getFROM_DATE(), String.valueOf(from_date.getText()));
+                bundle.putString(orderConstant.getTo_DATE(), String.valueOf(to_date.getText()));
 
                 orderSummary.setArguments(bundle);
 

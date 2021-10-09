@@ -22,9 +22,9 @@
                                         <th>{{ dataTable.headerRow[3] }}</th>
                                         <th>{{ dataTable.headerRow[4] }}</th>
                                         <th>{{ dataTable.headerRow[5] }}</th>
-                                        <th>{{ dataTable.headerRow[6] }}</th>
+
                                         <th class="disabled-sorting text-center">
-                                            {{ dataTable.headerRow[7] }}
+                                            {{ dataTable.headerRow[6] }}
                                         </th>
                                     </tr>
                                 </thead>
@@ -36,9 +36,9 @@
                                         <th>{{ dataTable.headerRow[3] }}</th>
                                         <th>{{ dataTable.headerRow[4] }}</th>
                                         <th>{{ dataTable.headerRow[5] }}</th>
-                                        <th>{{ dataTable.headerRow[6] }}</th>
+
                                         <th class="disabled-sorting text-center">
-                                            {{ dataTable.headerRow[7] }}
+                                            {{ dataTable.headerRow[6] }}
                                         </th>
                                     </tr>
                                 </tfoot>
@@ -49,13 +49,15 @@
                                         <td> {{ row.siteName }}</td>
                                         <td> {{ row.materialName }}</td>
                                         <td> {{ row.total }} LKR</td>
-                                        <td> <span class="badge badge-success" *ngIf="row.isApproved == 1">APPROVED</span>
-                                            <span class="badge badge-danger" *ngIf="row.isApproved == 0">REJECTED</span></td>
-           
+                                        <td> <span class="badge badge-success"
+                                                *ngIf="row.isApproved == 1">APPROVED</span>
+                                            <span class="badge badge-danger" *ngIf="row.isApproved == 0">REJECTED</span>
+                                        </td>
+
                                         <td class="text-center">
                                             <a class="btn btn-link btn-success btn-just-icon edit"><i
                                                     class="material-icons" (click)="addPayment(row.id)">edit</i></a>
-                                            
+
                                         </td>
                                     </tr>
                                 </tbody>

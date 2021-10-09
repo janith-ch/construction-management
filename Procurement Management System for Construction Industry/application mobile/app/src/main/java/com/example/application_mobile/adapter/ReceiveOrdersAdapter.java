@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.application_mobile.R;
+import com.example.application_mobile.constant.OrderConstant;
 import com.example.application_mobile.fragment.delivery.CreateDelivery;
 import com.example.application_mobile.fragment.order.ReceiveOrders;
 import com.example.application_mobile.model.Quotation;
@@ -27,7 +28,7 @@ import java.util.List;
 public class ReceiveOrdersAdapter extends RecyclerView.Adapter<ReceiveOrdersAdapter.ReceiveOrdersViewHolder> {
 
     private List<ReceiveOrder> listdata;
-    Button button;
+    private OrderConstant orderConstant = new OrderConstant();
     private Context context;
 
     // RecyclerView recyclerView;
@@ -80,15 +81,15 @@ public class ReceiveOrdersAdapter extends RecyclerView.Adapter<ReceiveOrdersAdap
 
                 Bundle bundle = new Bundle();
 
-                bundle.putString("purId", String.valueOf(listdata.get(position).getId()));
-                bundle.putString("MaterialName", listdata.get(position).getMaterialName());
-                bundle.putString("quantity",String.valueOf(listdata.get(position).getQuantity()));
-                bundle.putString("quantityType",listdata.get(position).getQuanitiyType());
-                bundle.putString("siteName",String.valueOf(listdata.get(position).getSiteName()));
-                bundle.putString("siteAddress",listdata.get(position).getAddress());
-                bundle.putString("siteManagerName",listdata.get(position).getSiteMangerFirstName());
-                bundle.putString("fromDate", listdata.get(position).getOrderDate());
-                bundle.putString("toDate", listdata.get(position).getDeliveryDate());
+                bundle.putString(orderConstant.getPUR_ID(), String.valueOf(listdata.get(position).getId()));
+                bundle.putString(orderConstant.getMATERIAL_NAME(), listdata.get(position).getMaterialName());
+                bundle.putString(orderConstant.getQUANTITY(),String.valueOf(listdata.get(position).getQuantity()));
+                bundle.putString(orderConstant.getQUANTITY__TYPE(),listdata.get(position).getQuanitiyType());
+                bundle.putString(orderConstant.getSITE_NAME(),String.valueOf(listdata.get(position).getSiteName()));
+                bundle.putString(orderConstant.getSITE_ADDRESS(),listdata.get(position).getAddress());
+                bundle.putString(orderConstant.getSITE_MANAGER_NAME(),listdata.get(position).getSiteMangerFirstName());
+                bundle.putString(orderConstant.getFROM_DATE(), listdata.get(position).getOrderDate());
+                bundle.putString(orderConstant.getTo_DATE(), listdata.get(position).getDeliveryDate());
 
                 createDelivery.setArguments(bundle);
 

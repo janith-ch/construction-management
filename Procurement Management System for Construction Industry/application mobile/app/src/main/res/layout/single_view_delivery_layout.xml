@@ -14,10 +14,33 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="124dp"
+        android:layout_height="181dp"
         android:layout_margin="10dp"
 
         >
+
+        <TextView
+            android:id="@+id/textView42"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Delivery Person No"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/textView41"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView41"
+            app:layout_constraintTop_toBottomOf="@+id/textView41" />
+
+        <TextView
+            android:id="@+id/textView44"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Delivery Vehicle No"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/textView42"
+            app:layout_constraintStart_toStartOf="@+id/textView42"
+            app:layout_constraintTop_toBottomOf="@+id/textView42" />
 
         <View
             android:id="@+id/view2"
@@ -30,7 +53,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.573"
+            app:layout_constraintVertical_bias="0.691"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -41,10 +64,22 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.035"
+            app:layout_constraintHorizontal_bias="0.038"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.105" />
+            app:layout_constraintVertical_bias="0.055" />
+
+        <TextView
+            android:id="@+id/textView41"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Delivery Person Name"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/textView8"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         <TextView
             android:id="@+id/textView29"
@@ -53,7 +88,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/delivery_status"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.027"
+            app:layout_constraintHorizontal_bias="0.062"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
@@ -77,10 +112,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/space"
-            app:layout_constraintEnd_toEndOf="@+id/textView8"
-            app:layout_constraintHorizontal_bias="0.46"
-            app:layout_constraintStart_toStartOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintEnd_toEndOf="@+id/delivery_ref"
+            app:layout_constraintStart_toStartOf="@+id/delivery_ref"
+            app:layout_constraintTop_toBottomOf="@+id/delivery_ref" />
 
         <TextView
             android:id="@+id/delivery_quantity"
@@ -88,21 +122,30 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/space"
-            app:layout_constraintEnd_toEndOf="@+id/delivery_ref"
-            app:layout_constraintHorizontal_bias="0.526"
-            app:layout_constraintStart_toStartOf="@+id/delivery_ref"
-            app:layout_constraintTop_toBottomOf="@+id/delivery_ref" />
+            app:layout_constraintEnd_toEndOf="@+id/delivery_material"
+            app:layout_constraintStart_toStartOf="@+id/delivery_material"
+            app:layout_constraintTop_toBottomOf="@+id/delivery_material" />
 
         <TextView
             android:id="@+id/delivery_status"
-            android:layout_width="79dp"
+            android:layout_width="85dp"
             android:layout_height="22dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="60dp"
             android:background="@drawable/text_view_yellow_coner"
             android:text="@string/space"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="@+id/delivery_quantity"
-            app:layout_constraintHorizontal_bias="0.439"
+            app:layout_constraintHorizontal_bias="0.414"
+            app:layout_constraintStart_toStartOf="@+id/delivery_quantity"
+            app:layout_constraintTop_toBottomOf="@+id/delivery_quantity" />
+
+        <TextView
+            android:id="@+id/text_vehicle_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/space"
+            app:layout_constraintEnd_toEndOf="@+id/delivery_quantity"
             app:layout_constraintStart_toStartOf="@+id/delivery_quantity"
             app:layout_constraintTop_toBottomOf="@+id/delivery_quantity" />
 

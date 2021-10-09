@@ -9,7 +9,9 @@ import app.system.application.backend.constant.DeliveryEnum;
 import app.system.application.backend.model.dto.DeliveryNoteDto;
 import app.system.application.backend.model.dto.OrderDto;
 import app.system.application.backend.repository.DeliveryNoteRepository;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class DeliveryNoteService implements DeliveryNoteInterface {
 	
@@ -87,18 +89,29 @@ public class DeliveryNoteService implements DeliveryNoteInterface {
 		ArrayList<OrderDto> deliveryOrderDtos = new ArrayList<OrderDto>();
 		
 		List<OrderDto> allList = orderService.receiveOrders();
+		
 
 		
-//		for(OrderDto order : allList) {
-//
-//			int isApproved = order.getIsApprove();
-//			String deliveryStatus = order.getDeliveryStatus();
-//
-//		//	if(isApproved == 1 && deliveryStatus != DeliveryEnum.DISPATCHED.getStatus()) {
-//		if(isApproved==1){
-//				deliveryOrderDtos.add(order);
-//			}
-//		}
+		for(OrderDto order : allList) {
+
+			int isApproved = order.getIsApprove();
+			String deliveryStatus = order.getDeliveryStatus();
+			int quotationStatus = order.getQuotationStatus();
+			
+
+			if( isApproved == 1 && deliveryStatus.contentEquals(DeliveryEnum.PENDING.getStatus()) ) {
+
+				if( quotationStatus == 1) {
+					
+			
+					deliveryOrderDtos.add(order);
+					
+				}
+				
+				
+			}
+				
+		}
 		
 		return deliveryOrderDtos;
 		

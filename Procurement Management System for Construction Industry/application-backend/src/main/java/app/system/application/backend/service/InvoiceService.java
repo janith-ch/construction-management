@@ -11,6 +11,7 @@ import app.system.application.backend.model.dto.InvoiceDto;
 import app.system.application.backend.model.dto.MaterialDto;
 import app.system.application.backend.model.dto.OrderDto;
 import app.system.application.backend.model.dto.QuotationDto;
+import app.system.application.backend.repository.DeliveryNoteRepository;
 import app.system.application.backend.repository.InvoiceRepository;
 import app.system.application.backend.repository.MaterialRepository;
 import app.system.application.backend.repository.OrderRepository;
@@ -24,6 +25,9 @@ public class InvoiceService implements InvoiceInterface {
 	
 	@Autowired
 	private InvoiceRepository invoiceRepository;
+	
+	@Autowired
+	private DeliveryNoteRepository deliveryNoteRepository;
 	
 	@Autowired
 	private MaterialRepository materialRepository;
@@ -67,7 +71,9 @@ public class InvoiceService implements InvoiceInterface {
 				
 			}
 			
-			orderRepository.updateDeliveryStatus(orderId, DeliveryEnum.DELIVERED.getStatus());	
+			orderRepository.updateDeliveryStatus(orderId, DeliveryEnum.DELIVERED.getStatus());
+			
+			
 			return invoiceRepository.insert(invoiceDto) ;
 			
 			

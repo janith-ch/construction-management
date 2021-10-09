@@ -31,6 +31,7 @@ export class ViewOrderComponent implements OnInit {
         'Date Period',
         'Total Cost',
         'Status',
+        'Delivery Status',
         'Action',
       ],
       footerRow: [
@@ -39,6 +40,7 @@ export class ViewOrderComponent implements OnInit {
         'Date Period',
         'Total Cost',
         'Status',
+        'Delivery Status',
         'Action',
       ],
       dataRows: [],

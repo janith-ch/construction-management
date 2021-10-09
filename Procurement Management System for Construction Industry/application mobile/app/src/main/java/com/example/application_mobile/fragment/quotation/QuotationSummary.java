@@ -21,7 +21,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.application_mobile.R;
 import com.example.application_mobile.constant.Common;
-import com.example.application_mobile.fragment.order.Orders;
+import com.example.application_mobile.constant.QuotationConstant;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,10 +32,11 @@ import lombok.SneakyThrows;
 public class QuotationSummary extends Fragment {
 
     private TextView material, materialType, estimatedUnitCost, estimatedFromDate, estimatedToDate, estimatedCost;
-    Button confirm,cancel;
-    Common common = new Common();
-    Quotations quotations = new Quotations();
+    private Button confirm,cancel;
+    private Common common = new Common();
+    private Quotations quotations = new Quotations();
     private JsonObjectRequest jsonObjectRequest;
+    private QuotationConstant quotationConstant = new QuotationConstant();
 
     private RequestQueue requestQueue;
 
@@ -61,16 +62,16 @@ public class QuotationSummary extends Fragment {
         confirm= view.findViewById(R.id.qsum_confirm);
 
         Bundle bundle = getArguments();
-        material.setText(bundle.getString("qcMaterial"));
-        materialType.setText(bundle.getString("qcMaterialType"));
-        estimatedUnitCost.setText(bundle.getString("estimatedUnitCost"));
-        estimatedFromDate.setText(bundle.getString("estimatedFromDate"));
-        estimatedToDate.setText(bundle.getString("estimatedToDate"));
+        material.setText(bundle.getString(quotationConstant.getMATERIAL_NAME()));
+        materialType.setText(bundle.getString(quotationConstant.getQUANTITY_TYPE()));
+        estimatedUnitCost.setText(bundle.getString(quotationConstant.getESTIMATED_UNIT_COST()));
+        estimatedFromDate.setText(bundle.getString(quotationConstant.getESTIMATED_FROM_DATE()));
+        estimatedToDate.setText(bundle.getString(quotationConstant.getESTIMATED_TO_DATE()));
 
-        int unit_cost = Integer.parseInt(bundle.getString("estimatedUnitCost"));
-        int units = Integer.parseInt(bundle.getString("estimatedQuantity"));
+        int unit_cost = Integer.parseInt(bundle.getString(quotationConstant.getESTIMATED_UNIT_COST()));
+        int units = Integer.parseInt(bundle.getString(quotationConstant.getESTIMATED_QUANTITY()));
 
-        estimatedCost.setText("RS .".concat(String.valueOf(unit_cost*units)).concat(".00"));
+        estimatedCost.setText(common.getRS().concat(String.valueOf(unit_cost*units)).concat(common.getPOINTS()));
 
 
 
@@ -80,6 +81,7 @@ public class QuotationSummary extends Fragment {
             public void handleOnBackPressed() {
                 // Handle the back button event
                 Toast.makeText(getContext(), "Quotation Canceled", Toast.LENGTH_LONG).show();
+
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, quotations).commit();
             }
         };
@@ -116,12 +118,12 @@ public class QuotationSummary extends Fragment {
 
         JSONObject jsonBody = new JSONObject();
 
-        jsonBody.put("unitCost", Double.parseDouble(bundle.getString("estimatedUnitCost")));
-        jsonBody.put("quanitity", Double.parseDouble(bundle.getString("estimatedQuantity")));
-        jsonBody.put("validLastDate", bundle.getString("estimatedFromDate"));
-        jsonBody.put("orderId", bundle.getInt("qcOrderId"));
+        jsonBody.put(quotationConstant.getUNIT_COST(), Double.parseDouble(bundle.getString(quotationConstant.getESTIMATED_UNIT_COST())));
+        jsonBody.put(quotationConstant.getQUANTITY_Q(), Double.parseDouble(bundle.getString(quotationConstant.getESTIMATED_QUANTITY())));
+        jsonBody.put(quotationConstant.getVALID_LAST_DATE(), bundle.getString(quotationConstant.getESTIMATED_FROM_DATE()));
+        jsonBody.put(quotationConstant.getORDER_ID(), bundle.getInt(quotationConstant.getORDER_ID()));
 
-        System.out.println("====================>"+jsonBody);
+       Log.i("request json {} ",jsonBody.toString());
 
         jsonObjectRequest = new JsonObjectRequest(
 
@@ -137,7 +139,7 @@ public class QuotationSummary extends Fragment {
 
                         Log.e("Response is", response.toString());
 
-                        if (response.getBoolean("isSuccess")) {
+                        if (response.getBoolean(common.getIS_SUCCESS())) {
 
                             Toast.makeText(getContext(), "Quotation Created", Toast.LENGTH_LONG).show();
 

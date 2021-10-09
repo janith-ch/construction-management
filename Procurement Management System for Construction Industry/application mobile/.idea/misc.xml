@@ -37,6 +37,17 @@
         <entry key="..\:/Janith Sliit/Year 03/Y3 S2/CSSE/project/Procurement Management System for Construction Industry/application mobile/app/src/main/res/layout/single_view_receive_order_layout.xml" value="0.4" />
         <entry key="..\:/Janith Sliit/Year 03/Y3 S2/CSSE/project/Procurement Management System for Construction Industry/application mobile/app/src/main/res/layout/text.xml" value="0.21458333333333332" />
         <entry key="..\:/Janith Sliit/Year 03/Y3 S2/CSSE/project/Procurement Management System for Construction Industry/application mobile/app/src/main/res/menu/bottom_nav_menu.xml" value="0.16" />
+        <entry key="..\:/Users/janith/Desktop/CSSE/implementation-walkthrough-2021s2_reg_we_01/Procurement Management System for Construction Industry/application mobile/app/src/main/res/layout/fragment_create_delivery.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/janith/Desktop/CSSE/implementation-walkthrough-2021s2_reg_we_01/Procurement Management System for Construction Industry/application mobile/app/src/main/res/layout/fragment_create_invoice.xml" value="0.23697916666666666" />
+        <entry key="..\:/Users/janith/Desktop/CSSE/implementation-walkthrough-2021s2_reg_we_01/Procurement Management System for Construction Industry/application mobile/app/src/main/res/layout/fragment_create_order_step_one.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/janith/Desktop/CSSE/implementation-walkthrough-2021s2_reg_we_01/Procurement Management System for Construction Industry/application mobile/app/src/main/res/layout/fragment_invoices.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/janith/Desktop/CSSE/implementation-walkthrough-2021s2_reg_we_01/Procurement Management System for Construction Industry/application mobile/app/src/main/res/layout/fragment_order_summary.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/janith/Desktop/CSSE/implementation-walkthrough-2021s2_reg_we_01/Procurement Management System for Construction Industry/application mobile/app/src/main/res/layout/single_view_delivery_layout.xml" value="0.4" />
+        <entry key="..\:/Users/janith/Desktop/CSSE/implementation-walkthrough-2021s2_reg_we_01/Procurement Management System for Construction Industry/application mobile/app/src/main/res/layout/single_view_invoice_layout.xml" value="0.4" />
+        <entry key="..\:/Users/janith/Desktop/CSSE/implementation-walkthrough-2021s2_reg_we_01/Procurement Management System for Construction Industry/application mobile/app/src/main/res/layout/single_view_order_layout.xml" value="0.4" />
+        <entry key="..\:/Users/janith/Desktop/CSSE/implementation-walkthrough-2021s2_reg_we_01/Procurement Management System for Construction Industry/application mobile/app/src/main/res/layout/single_view_quotation_layout.xml" value="0.4" />
+        <entry key="..\:/Users/janith/Desktop/CSSE/implementation-walkthrough-2021s2_reg_we_01/Procurement Management System for Construction Industry/application mobile/app/src/main/res/layout/single_view_receive_order_layout.xml" value="0.4" />
+        <entry key="..\:/Users/janith/Desktop/CSSE/implementation-walkthrough-2021s2_reg_we_01/Procurement Management System for Construction Industry/application mobile/app/src/main/res/menu/bottom_nav_menu.xml" value="0.23854166666666668" />
       </map>
     </option>
   </component>

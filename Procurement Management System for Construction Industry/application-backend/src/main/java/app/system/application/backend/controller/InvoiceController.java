@@ -2,21 +2,16 @@ package app.system.application.backend.controller;
 
 import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import app.system.application.backend.model.dto.InvoiceDto;
 import app.system.application.backend.response.CommonResponse;
 import app.system.application.backend.service.InvoiceService;
-
+@Slf4j
 @RestController
+@CrossOrigin
 @RequestMapping("api")
 public class InvoiceController {
 	
@@ -24,7 +19,7 @@ public class InvoiceController {
 	private InvoiceService invoiceService;
 
 	@PostMapping("/v1/invoices")
-	public ResponseEntity<?> addSupplier(@RequestBody InvoiceDto invoiceDto){
+	public ResponseEntity<?> addInvoice(@RequestBody InvoiceDto invoiceDto){
 
 		try {
 
@@ -39,6 +34,7 @@ public class InvoiceController {
 			}
 		}
 		catch(Exception e) {
+			log.info("error "+ e);
 			return  ResponseEntity.ok(new CommonResponse<InvoiceDto>(false,e.getMessage(),invoiceDto));
 
 
@@ -47,7 +43,7 @@ public class InvoiceController {
 
 
 	@PutMapping("/v1/invoices/{id}")
-	public ResponseEntity<?> updateSupplierById(@RequestBody InvoiceDto invoiceDto,@PathVariable int id) {
+	public ResponseEntity<?> updateInvoiceById(@RequestBody InvoiceDto invoiceDto,@PathVariable int id) {
 
 		int result = invoiceService.update(invoiceDto,id);
 
@@ -65,7 +61,7 @@ public class InvoiceController {
 	}
 
 	@GetMapping("/v1/invoices/{id}")
-	public ResponseEntity<?> getSupplierById(@PathVariable int id) {
+	public ResponseEntity<?> getInvoiceById(@PathVariable int id) {
 
 		try {
 
@@ -84,7 +80,7 @@ public class InvoiceController {
 
 
 	@GetMapping("/v1/invoices")
-	public  ResponseEntity<?> getSupplierList(){
+	public  ResponseEntity<?> getInvoiceList(){
 
 		List<InvoiceDto> result = invoiceService.findAll();
 
@@ -94,7 +90,7 @@ public class InvoiceController {
 
 
 	@DeleteMapping("/v1/invoices/{id}")
-	public ResponseEntity<?> deleteSupplierById(@PathVariable int id) {
+	public ResponseEntity<?> deleteInvoiceById(@PathVariable int id) {
 
 		int result = invoiceService.delete(id);
 
