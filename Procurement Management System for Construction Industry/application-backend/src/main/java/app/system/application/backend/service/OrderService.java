@@ -1,5 +1,6 @@
 package app.system.application.backend.service;
 import app.system.application.backend.constant.AmountEnum;
+import app.system.application.backend.constant.Common;
 import app.system.application.backend.constant.DeliveryEnum;
 import app.system.application.backend.model.dto.OrderDto;
 import app.system.application.backend.model.dto.StockPriceDto;
@@ -24,6 +25,9 @@ public class OrderService implements OrderInt {
 
 	@Autowired
 	MaterialRepository materialRepository;
+
+	@Autowired
+	Common common;
     
     @Override
 	public int createOrder(OrderDto orderDto) {	
@@ -49,14 +53,14 @@ public class OrderService implements OrderInt {
       
       if (totalCost >= limitValue) {
     	  
-    	  orderDto.setIsApprove(2);
-    	  orderDto.setQuotationStatus(0);
+    	  orderDto.setIsApprove(common.getTWO());
+    	  orderDto.setQuotationStatus(common.getZERO());
     	  
     	  
       }else {
     	  
-    	  orderDto.setIsApprove(1);
-    	  orderDto.setQuotationStatus(1);
+    	  orderDto.setIsApprove(common.getONE());
+    	  orderDto.setQuotationStatus(common.getONE());
       }
       
      return orderRepository.save(orderDto);
@@ -80,13 +84,13 @@ public class OrderService implements OrderInt {
 	      
 	      if (totalCost >= limitValue) {
 	    	  
-	    	  orderDto.setIsApprove(0);
-	    	  orderDto.setQuotationStatus(0);
+	    	  orderDto.setIsApprove(common.getZERO());
+	    	  orderDto.setQuotationStatus(common.getZERO());
 	    	  
 	      }else {
 	    	  
-	    	  orderDto.setIsApprove(1);
-	    	  orderDto.setQuotationStatus(1);
+	    	  orderDto.setIsApprove(common.getONE());
+	    	  orderDto.setQuotationStatus(common.getONE());
 	      }
 		 return orderRepository.update(orderDto,id);
 	}

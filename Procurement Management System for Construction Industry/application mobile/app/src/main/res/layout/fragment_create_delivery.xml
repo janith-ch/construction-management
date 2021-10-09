@@ -329,7 +329,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Button"
+            android:text="@string/create_delivery"
             app:backgroundTint="#4299cf"
             app:layout_constraintEnd_toEndOf="@+id/delivery_note"
             app:layout_constraintStart_toStartOf="@+id/delivery_note"

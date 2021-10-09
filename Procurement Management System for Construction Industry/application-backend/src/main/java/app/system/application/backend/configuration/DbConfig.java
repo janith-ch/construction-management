@@ -1,6 +1,7 @@
 package app.system.application.backend.configuration;
 
 
+import app.system.application.backend.constant.Common;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;
@@ -26,6 +27,9 @@ public class DbConfig {
     @Autowired
     private Environment env;
 
+    @Autowired
+    private Common common;
+
     @Bean(name = "system-jdbc-template")
     public JdbcTemplate jdbcTemplate(@Qualifier("system-datasource") DataSource dataSource) throws PropertyVetoException {
         return new JdbcTemplate(dataSource);
@@ -40,11 +44,11 @@ public class DbConfig {
     public DataSource popsaxonyDataSource() {
 
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl(env.getProperty("system.jdbc.url"));
-        config.setUsername(env.getProperty("system.jdbc.user"));
-        config.setPassword(env.getProperty("system.jdbc.pass"));
-        config.setMaximumPoolSize(Integer.parseInt(env.getProperty("system.jdbc.connectionPool")));
-        config.setLeakDetectionThreshold(120000);
+        config.setJdbcUrl(env.getProperty(common.getSYSTEM_JDBC_URL()));
+        config.setUsername(env.getProperty(common.getSYSTEM_JDBC_USER()));
+        config.setPassword(env.getProperty(common.getSYSTEM_JDBC_PASSWORD()));
+        config.setMaximumPoolSize(Integer.parseInt(env.getProperty(common.getSYSTEM_JDBC_CONNECTION_POOL())));
+        config.setLeakDetectionThreshold(common.getPOOL_COUNT());
         return new HikariDataSource(config);
     }
 
