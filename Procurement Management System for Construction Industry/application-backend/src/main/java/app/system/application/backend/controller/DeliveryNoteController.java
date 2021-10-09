@@ -21,7 +21,7 @@ public class DeliveryNoteController {
 	public ResponseEntity<?> addDeliveryNote(@RequestBody DeliveryNoteDto deliveryNoteDto){
 
 		try {
-
+			//check result
 			int result = deliveryNoteService.save(deliveryNoteDto);
 
 			if(result >= 1 ) {
@@ -70,7 +70,7 @@ public class DeliveryNoteController {
 
 		}catch(Exception e) {
 
-			return  ResponseEntity.ok(new CommonResponse<DeliveryNoteDto>(true,"delivery note not found",null));
+			return  ResponseEntity.ok(new CommonResponse<DeliveryNoteDto>(false,"delivery note not found",null));
 		}
 
 
@@ -86,7 +86,7 @@ public class DeliveryNoteController {
 
 	}
 
-	
+
 
 	@GetMapping("/v1/delivery-notes/received/orders")
 	public  ResponseEntity<?> getDeliveryOrderList(){
@@ -114,6 +114,6 @@ public class DeliveryNoteController {
 		}
 
 	}
-	
-	
+
+
 }

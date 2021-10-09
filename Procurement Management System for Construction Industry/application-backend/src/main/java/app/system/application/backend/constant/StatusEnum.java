@@ -3,22 +3,22 @@ package app.system.application.backend.constant;
 public enum StatusEnum {
 	
 	
-	DISPATCHED("DISPATCHED"),
-	DELIVERING("DELIVERING"),
-	DELIVERED("DELIVERED"),
-	PENDING("PENDING");
+	APPROVED(1),
+	PENDING(2),
+	REJECT(0),
+	APPROVEDQUOATATION(3);
 	
 	
 	
-	private String status;
+	private int status;
 	
 	
-	private StatusEnum(String status) {
+	private StatusEnum(int status) {
 		this.status = status;
 	}
 	
 	
-	public String getStatus() {
+	public int getStatus() {
 		
 		return status;
 	}

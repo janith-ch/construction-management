@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.system.application.backend.constant.DeliveryEnum;
+import app.system.application.backend.constant.StatusEnum;
 import app.system.application.backend.model.dto.DeliveryNoteDto;
 import app.system.application.backend.model.dto.OrderDto;
 import app.system.application.backend.repository.DeliveryNoteRepository;
@@ -16,24 +17,25 @@ import lombok.extern.slf4j.Slf4j;
 public class DeliveryNoteService implements DeliveryNoteInterface {
 	
 	@Autowired
-	DeliveryNoteRepository deliveryNoteRepository;
+	private DeliveryNoteRepository deliveryNoteRepository;
 	
 	@Autowired
-	OrderService orderService;
+	private OrderService orderService;
 	
 	@Autowired
-	MaterialService materialService;
+	private MaterialService materialService;
 
 	@Autowired
-	QuotationService quotationService;
+	private QuotationService quotationService;
 
 	@Override
 	public int save(DeliveryNoteDto deliveryNoteDto) {
 		
+		//set delivering value
 		deliveryNoteDto.setDeliveryStatus(DeliveryEnum.DELIVERING.getStatus());
 		
 		int id = deliveryNoteRepository.save(deliveryNoteDto); 
-		
+		//check save successful
 		if(id >= 1) {
 			
 			int orderId = deliveryNoteDto.getOrderId();
@@ -44,11 +46,11 @@ public class DeliveryNoteService implements DeliveryNoteInterface {
 			double quantity = orderDto.getQuantity();
 			
 			int materialId = orderDto.getMaterialId();
-			
+			//update stock of material
 			int updateRespone = materialService.updateMaterialStock(quantity, materialId);
 			log.info("Quantity"+ quantity);
 			
-			if(updateRespone != 0) {
+			if(updateRespone != StatusEnum.REJECT.getStatus()) {
 				
 				orderService.updateDeliveryStatus(orderId, orderStatus1);
 			}
@@ -83,7 +85,6 @@ public class DeliveryNoteService implements DeliveryNoteInterface {
 	}
 	
 
-	//test this
 	@Override
 	public List<OrderDto> deliveryOrders() {
 		
@@ -92,7 +93,7 @@ public class DeliveryNoteService implements DeliveryNoteInterface {
 		List<OrderDto> allList = orderService.receiveOrders();
 		
 
-		
+		//iterate using foreach 
 		for(OrderDto order : allList) {
 
 			int isApproved = order.getIsApprove();
@@ -100,9 +101,9 @@ public class DeliveryNoteService implements DeliveryNoteInterface {
 			int quotationStatus = order.getQuotationStatus();
 			
 
-			if( isApproved == 1 && deliveryStatus.contentEquals(DeliveryEnum.PENDING.getStatus()) ) {
+			if( isApproved == StatusEnum.APPROVED.getStatus()  && deliveryStatus.contentEquals(DeliveryEnum.PENDING.getStatus()) ) {
 
-				if( quotationStatus == 1) {
+				if( quotationStatus == StatusEnum.APPROVED.getStatus()) {
 					
 			
 					deliveryOrderDtos.add(order);

@@ -11,6 +11,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import app.system.application.backend.constant.AmountEnum;
+import app.system.application.backend.constant.StatusEnum;
 import app.system.application.backend.model.dto.MaterialDto;
 import app.system.application.backend.model.dto.OrderDto;
 import app.system.application.backend.model.dto.QuotationDto;
@@ -27,17 +29,17 @@ import lombok.extern.slf4j.Slf4j;
 public class QuotationService implements QuotationInterface {
 
 	@Autowired
-	QuotationRepository quotationRepository;
+	private QuotationRepository quotationRepository;
 
 	@Autowired
-	OrderRepository orderRepository; 
+	private OrderRepository orderRepository; 
 
 
 	@Autowired
-	UserRepository userRepository; 
+	private UserRepository userRepository; 
 
 	@Autowired
-	MaterialRepository materialRepository; 
+	private MaterialRepository materialRepository; 
 
 	@Autowired
 	private JavaMailSender javaMailSender;
@@ -53,7 +55,8 @@ public class QuotationService implements QuotationInterface {
 
 	@Override
 	public int save(QuotationDto quotationDto) {
-
+		
+		//get current values
 		String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
 		double quanitity = quotationDto.getQuanitity();
@@ -64,20 +67,22 @@ public class QuotationService implements QuotationInterface {
 		quotationDto.setAmount(amount);
 
 		quotationDto.setDate(timeStamp);
-
-		quotationDto.setIsApproved(2);
+		//set status as pending
+		quotationDto.setIsApproved(StatusEnum.PENDING.getStatus());
 
 		int orderId = quotationDto.getOrderId();
-
+		// save quotations
 		int quotationId = quotationRepository.save(quotationDto);
 
-		if(quotationId >= 1) {
+		if(quotationId >= StatusEnum.APPROVED.getStatus()) {
 
 			OrderDto order = orderRepository.findById(orderId).get();
 
-			order.setQuotationStatus(2);
+			order.setQuotationStatus(StatusEnum.PENDING.getStatus());
 
 			int updateResult = orderRepository.update(order,orderId);
+			
+			log.info("update result " + updateResult);
 
 			return updateResult;
 
@@ -117,10 +122,11 @@ public class QuotationService implements QuotationInterface {
 	public List<OrderDto> getQuotationOrderList() {
 
 		ArrayList<OrderDto> quotationOrderList = new ArrayList<OrderDto>();
-
+		
+		//get list of orders
 		List<OrderDto> allList = orderRepository.findAll();
 
-
+  
 		for (OrderDto dto: allList) {
 
 			int isApprove = dto.getIsApprove();
@@ -128,19 +134,19 @@ public class QuotationService implements QuotationInterface {
 			double orderTotal = dto.getTotalCost();
 
 			int quotationStatus = dto.getQuotationStatus();
+			//check conditions
+			if(isApprove == StatusEnum.APPROVED.getStatus()  && orderTotal >= AmountEnum.ORDERLIMIT.getLimit()) {
 
-			if(isApprove == 1 && orderTotal >= 100000) {
-				
-				if(quotationStatus == 3 || quotationStatus == 2  ) {
-					
+				if(quotationStatus == StatusEnum.APPROVEDQUOATATION.getStatus() || StatusEnum.PENDING.getStatus() == 2  ) {
+
 					quotationOrderList.add(dto);
-					
-					
+
+
 				}
-				
-				
+
+
 			}
-				
+
 
 
 		}
@@ -150,12 +156,13 @@ public class QuotationService implements QuotationInterface {
 
 	@Override
 	public int updateQuotationStatus(int id,int status) {
-
+		//update status
 		int updateResult = quotationRepository.updateStatus(id,status);
 
-
-		if(updateResult >= 1) {
-
+		//check the result
+		if(updateResult >= StatusEnum.APPROVED.getStatus()) {
+			
+			//get quotation by quotation Id
 			QuotationDto quotationDto = quotationRepository.findById(id).get();
 
 			int orderId = quotationDto.getOrderId();
@@ -174,7 +181,7 @@ public class QuotationService implements QuotationInterface {
 
 
 
-			if(status == 1 ) {
+			if(status == StatusEnum.APPROVED.getStatus() ) {
 
 
 				orderDto.setQuotationStatus(1);
@@ -209,12 +216,12 @@ public class QuotationService implements QuotationInterface {
 
 	}
 
-
-	public  void sendConfirmationEmail(UserDto userDto,QuotationDto quotationDto) {
+    //confirmation email send method
+	public void sendConfirmationEmail(UserDto userDto,QuotationDto quotationDto) {
 
 		String email = userDto.getEmail();
 
-		log.info("user email" + email);
+		log.info("send to email :" + email);
 
 		String name = userDto.getLastName();
 
@@ -226,7 +233,7 @@ public class QuotationService implements QuotationInterface {
 		SimpleMailMessage msg = new SimpleMailMessage();
 		msg.setTo(email);
 		msg.setFrom(sendFromEmail);
-
+		//email body and subject assign
 		msg.setSubject("QUOTATION APPROVAL");
 		msg.setText( "Dear " + name + System.lineSeparator()+  System.lineSeparator()+  "We are pleased to inform you that your Quotation, ORDER ID :-"+orderId+ " has approved for delivery."
 				+ " Please make sure to proceed the delivery to the site." 
